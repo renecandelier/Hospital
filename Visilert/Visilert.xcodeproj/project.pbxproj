@@ -19,6 +19,8 @@
 		2316C69D1C1CD6EB009BF97C /* digital-7 (mono).ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2316C6981C1CD6EB009BF97C /* digital-7 (mono).ttf */; };
 		2316C69E1C1CD6EB009BF97C /* digital-7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2316C6991C1CD6EB009BF97C /* digital-7.ttf */; };
 		2316C69F1C1CD6EB009BF97C /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2316C69A1C1CD6EB009BF97C /* readme.txt */; };
+		23EDAC761C23887F00F1F428 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EDAC751C23887F00F1F428 /* HomeScreenViewController.swift */; };
+		23EDAC781C238A9100F1F428 /* StartDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EDAC771C238A9100F1F428 /* StartDemoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		2316C6981C1CD6EB009BF97C /* digital-7 (mono).ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7 (mono).ttf"; sourceTree = "<group>"; };
 		2316C6991C1CD6EB009BF97C /* digital-7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "digital-7.ttf"; sourceTree = "<group>"; };
 		2316C69A1C1CD6EB009BF97C /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		23EDAC751C23887F00F1F428 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		23EDAC771C238A9100F1F428 /* StartDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartDemoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,8 @@
 			children = (
 				2316C6721C1CC9E0009BF97C /* AppDelegate.swift */,
 				2316C6741C1CC9E0009BF97C /* ViewController.swift */,
+				23EDAC751C23887F00F1F428 /* HomeScreenViewController.swift */,
+				23EDAC771C238A9100F1F428 /* StartDemoViewController.swift */,
 				2316C6761C1CC9E0009BF97C /* Main.storyboard */,
 				2316C67C1C1CC9E0009BF97C /* Assets.xcassets */,
 				2316C67E1C1CC9E0009BF97C /* LaunchScreen.storyboard */,
@@ -229,8 +235,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2316C6751C1CC9E0009BF97C /* ViewController.swift in Sources */,
+				23EDAC761C23887F00F1F428 /* HomeScreenViewController.swift in Sources */,
 				2316C6731C1CC9E0009BF97C /* AppDelegate.swift in Sources */,
 				2316C67B1C1CC9E0009BF97C /* Visilert.xcdatamodeld in Sources */,
+				23EDAC781C238A9100F1F428 /* StartDemoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +428,7 @@
 				2316C6911C1CC9E0009BF97C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2316C6921C1CC9E0009BF97C /* Build configuration list for PBXNativeTarget "VisilertTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +437,7 @@
 				2316C6941C1CC9E0009BF97C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
