@@ -9,9 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var leftLightImage: UIImageView!
-    @IBOutlet weak var rightLightImage: UIImageView!
+    @IBOutlet weak var leftYellowLight: UIImageView!
+    @IBOutlet weak var leftRedLight: UIImageView!
+    @IBOutlet weak var leftGreenLight: UIImageView!
+    @IBOutlet weak var rightRedLight: UIImageView!
+    @IBOutlet weak var rightYellowLight: UIImageView!
+    @IBOutlet weak var rightGreenLight: UIImageView!
     @IBOutlet weak var counterLabel: UILabel!
     var timer = NSTimer()
     var flashLights = NSTimer()
@@ -23,15 +26,19 @@ class ViewController: UIViewController {
     func updateTimer() {
         time = time - 1
         if (time == Int(Double(counter) * 90 / 100) + 1) {
-            self.rightLightImage.image = UIImage(named: "yellowLight")!
-            self.leftLightImage.image = UIImage(named: "yellowLight")!
+            self.leftGreenLight.hidden = true
+            self.rightGreenLight.hidden = true
+            self.leftYellowLight.hidden = false
+            self.rightYellowLight.hidden = false
         } else if (time == 0) {
             flashLights = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "yellowFlashingLights", userInfo: nil, repeats: true)
         } else if(time == Int(Double(counter) * (-10/100)) + 1) {
             flashLights.invalidate()
             timer.invalidate()
-            self.rightLightImage.image = UIImage(named: "redLight")!
-            self.leftLightImage.image = UIImage(named: "redLight")!
+            self.leftYellowLight.hidden = true
+            self.rightYellowLight.hidden = true
+            self.rightRedLight.hidden = false
+            self.leftRedLight.hidden = false
             counterLabel.text = "0"
         }
         if (time <= 0) {
@@ -42,12 +49,12 @@ class ViewController: UIViewController {
     }
     
     func yellowFlashingLights() {
-        if(self.rightLightImage.hidden) {
-            self.leftLightImage.hidden = false
-            self.rightLightImage.hidden = false
+        if(self.rightYellowLight.hidden) {
+            self.rightYellowLight.hidden = false
+            self.leftYellowLight.hidden = false
         } else {
-            self.leftLightImage.hidden = true
-            self.rightLightImage.hidden = true
+            self.rightYellowLight.hidden = true
+            self.leftYellowLight.hidden = true
         }
     }
 
@@ -80,18 +87,21 @@ class ViewController: UIViewController {
     }
     
     func resetLights() {
-        self.rightLightImage.image = UIImage(named: "greenLight")!
-        self.leftLightImage.image = UIImage(named: "greenLight")!
-        self.leftLightImage.hidden = true
-        self.rightLightImage.hidden = true
+        self.rightGreenLight.hidden = true
+        self.rightRedLight.hidden = true
+        self.rightYellowLight.hidden = true
+        
+       self.leftGreenLight.hidden = true
+        self.leftRedLight.hidden = true
+        self.leftYellowLight.hidden = true
     }
     
     @IBAction func startStopButton(sender: UIButton) {
         if (Int(counterLabel.text!) > 0 && !counting) {
             counter = Int(counterLabel.text!)!
             time = counter
-            self.leftLightImage.hidden = false
-            self.rightLightImage.hidden = false
+            self.leftGreenLight.hidden = false
+            self.rightGreenLight.hidden = false
             timer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
             counting = true
         } else {
