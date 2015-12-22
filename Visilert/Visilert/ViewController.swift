@@ -20,23 +20,20 @@ class ViewController: UIViewController {
     var flashLights = NSTimer()
     var counter = 0
     var counting = false
-    var resetToInitialValue = true
     var time = 0
     
     func updateTimer() {
         time = time - 1
-        if (time == Int(Double(counter) * 90 / 100) + 1) {
-            self.leftGreenLight.hidden = true
-            self.rightGreenLight.hidden = true
+        if (time == Int(Double(counter) * 90 / 100) ) {
+            hideGreenLights()
             self.leftYellowLight.hidden = false
             self.rightYellowLight.hidden = false
         } else if (time == 0) {
             flashLights = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "yellowFlashingLights", userInfo: nil, repeats: true)
-        } else if(time == Int(Double(counter) * (-10/100)) + 1) {
+        } else if (Double(time) == (Double(counter) - (Double(counter)*(1.1)))) {
             flashLights.invalidate()
             timer.invalidate()
-            self.leftYellowLight.hidden = true
-            self.rightYellowLight.hidden = true
+            hideYellowLights()
             self.rightRedLight.hidden = false
             self.leftRedLight.hidden = false
             counterLabel.text = "0"
@@ -49,15 +46,14 @@ class ViewController: UIViewController {
     }
     
     func yellowFlashingLights() {
-        if(self.rightYellowLight.hidden) {
+        if (self.rightYellowLight.hidden) {
             self.rightYellowLight.hidden = false
             self.leftYellowLight.hidden = false
         } else {
-            self.rightYellowLight.hidden = true
-            self.leftYellowLight.hidden = true
+            hideYellowLights()
         }
     }
-
+    
     @IBAction func numberButton(sender: UIButton) {
         if (!counting) {
             if (counterLabel.text?.characters.count == 4) {
@@ -71,7 +67,7 @@ class ViewController: UIViewController {
             }
         }
     }
-
+    
     @IBAction func resetButton(sender: UIButton) {
         if (!counting) {
             if (counterLabel.text == "0") {
@@ -83,17 +79,29 @@ class ViewController: UIViewController {
                 resetLights()
             }
             timer.invalidate()
+            flashLights.invalidate()
         }
     }
     
-    func resetLights() {
-        self.rightGreenLight.hidden = true
-        self.rightRedLight.hidden = true
-        self.rightYellowLight.hidden = true
-        
-       self.leftGreenLight.hidden = true
+    func hideRedLights() {
         self.leftRedLight.hidden = true
+        self.rightRedLight.hidden = true
+    }
+    
+    func hideYellowLights() {
+        self.rightYellowLight.hidden = true
         self.leftYellowLight.hidden = true
+    }
+    
+    func hideGreenLights() {
+        self.leftGreenLight.hidden = true
+        self.rightGreenLight.hidden = true
+    }
+    
+    func resetLights() {
+        hideGreenLights()
+        hideRedLights()
+        hideYellowLights()
     }
     
     @IBAction func startStopButton(sender: UIButton) {
@@ -107,6 +115,7 @@ class ViewController: UIViewController {
         } else {
             counterLabel.text = "0"
             resetLights()
+            flashLights.invalidate()
             counting = false
             timer.invalidate()
         }
