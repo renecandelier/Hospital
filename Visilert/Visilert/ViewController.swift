@@ -21,6 +21,32 @@ class ViewController: UIViewController {
     var counter = 0
     var counting = false
     var time = 0
+    var inMode1 = true
+    @IBOutlet weak var mode2: UILabel!
+    @IBOutlet weak var mode1: UILabel!
+    
+    @IBOutlet weak var secondsAndMinutes: UISegmentedControl!
+    
+    var enableInputClicksWhenVisible: Bool {
+        return true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if(defaults.stringForKey("mode") == nil) {
+            defaults.setObject("1", forKey: "mode")
+        } else {
+            if(defaults.stringForKey("mode") == "1") {
+                inMode1 = true
+                mode2.hidden = true
+            } else {
+                inMode1 = false
+                mode2.hidden = false
+            }
+        }
+    }
+    
     
     func updateTimer() {
         time = time - 1
@@ -30,7 +56,7 @@ class ViewController: UIViewController {
             self.rightYellowLight.hidden = false
         } else if (time == 0) {
             flashLights = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "yellowFlashingLights", userInfo: nil, repeats: true)
-        } else if (Double(time) == (Double(counter) - (Double(counter)*(1.1)))) {
+        } else if (Double(time) <= (Double(counter) - (Double(counter)*(1.1))) && Double(time) < 0.0) {
             flashLights.invalidate()
             timer.invalidate()
             hideYellowLights()
@@ -62,6 +88,7 @@ class ViewController: UIViewController {
                 if (Int(counterLabel.text!) == 0) {
                     counterLabel.text = "\(sender.currentTitle!)"
                 } else {
+                    UIDevice.currentDevice().playInputClick()
                     counterLabel.text = "\(counterLabel.text!)\(sender.currentTitle!)"
                 }
             }
@@ -110,7 +137,11 @@ class ViewController: UIViewController {
             time = counter
             self.leftGreenLight.hidden = false
             self.rightGreenLight.hidden = false
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
+            if (secondsAndMinutes.selectedSegmentIndex == 0){
+                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
+            } else {
+                timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
+            }
             counting = true
         } else {
             counterLabel.text = "0"
