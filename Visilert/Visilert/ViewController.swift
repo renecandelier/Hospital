@@ -18,15 +18,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var counterLabel: UILabel!
     var timer = NSTimer()
     var flashLights = NSTimer()
-    var counter = 0
+    var counter = 0.0
     var counting = false
-    var time = 0
+    var time = 0.0
     var inMode1 = true
+    var mode2set = false
+    var m2 = Mode2()
+
     @IBOutlet weak var mode2: UILabel!
     @IBOutlet weak var mode1: UILabel!
     
     @IBOutlet weak var secondsAndMinutes: UISegmentedControl!
-    
     var enableInputClicksWhenVisible: Bool {
         return true
     }
@@ -34,10 +36,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let defaults = NSUserDefaults.standardUserDefaults()
-        if(defaults.stringForKey("mode") == nil) {
+        if (defaults.stringForKey("mode") == nil) {
             defaults.setObject("1", forKey: "mode")
         } else {
-            if(defaults.stringForKey("mode") == "1") {
+            if (defaults.stringForKey("mode") == "1") {
                 inMode1 = true
                 mode2.hidden = true
             } else {
@@ -47,37 +49,29 @@ class ViewController: UIViewController {
         }
     }
     
-    
     func updateTimer() {
         time = time - 1
-        if (time == Int(Double(counter) * 90 / 100) ) {
-            hideGreenLights()
-            self.leftYellowLight.hidden = false
-            self.rightYellowLight.hidden = false
-        } else if (time == 0) {
+        if (time == (m2.isMode2 ? m2.time1 : (counter * 90 / 100))) {
+            hideGreenLights(true)
+            hideYellowLights(false)
+        } else if (time == (m2.isMode2 ? m2.time2 : 0)) {
             flashLights = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "yellowFlashingLights", userInfo: nil, repeats: true)
-        } else if (Double(time) <= (Double(counter) - (Double(counter)*(1.1))) && Double(time) < 0.0) {
+        } else if (time <= (m2.isMode2 ? m2.time3 : ((counter - (counter*(1.1)))))) {
             flashLights.invalidate()
             timer.invalidate()
-            hideYellowLights()
-            self.rightRedLight.hidden = false
-            self.leftRedLight.hidden = false
+            hideYellowLights(true)
+            hideRedLights(false)
             counterLabel.text = "0"
         }
         if (time <= 0) {
             counterLabel.text = "0";
         } else {
-            counterLabel.text = "\(time)"
+            counterLabel.text = "\(Int(time))"
         }
     }
     
     func yellowFlashingLights() {
-        if (self.rightYellowLight.hidden) {
-            self.rightYellowLight.hidden = false
-            self.leftYellowLight.hidden = false
-        } else {
-            hideYellowLights()
-        }
+        rightYellowLight.hidden ? hideYellowLights(false) : hideYellowLights(true)
     }
     
     @IBAction func numberButton(sender: UIButton) {
@@ -98,8 +92,8 @@ class ViewController: UIViewController {
     @IBAction func resetButton(sender: UIButton) {
         if (!counting) {
             if (counterLabel.text == "0") {
-                counterLabel.text = String(counter)
-            } else if (counterLabel.text == String(counter) || counterLabel.text?.isEmpty == false) {
+                counterLabel.text = String(Int(counter))
+            } else if (counterLabel.text == String(Int(counter)) || counterLabel.text?.isEmpty == false) {
                 time = 0
                 counter = 0
                 counterLabel.text = "0"
@@ -110,33 +104,47 @@ class ViewController: UIViewController {
         }
     }
     
-    func hideRedLights() {
-        self.leftRedLight.hidden = true
-        self.rightRedLight.hidden = true
+    func hideRedLights(hide: Bool) {
+        if (hide) {
+            leftRedLight.hidden = true
+            rightRedLight.hidden = true
+        } else {
+            leftRedLight.hidden = false
+            rightRedLight.hidden = false
+        }
     }
     
-    func hideYellowLights() {
-        self.rightYellowLight.hidden = true
-        self.leftYellowLight.hidden = true
+    func hideYellowLights(hide: Bool) {
+        if (hide) {
+            rightYellowLight.hidden = true
+            leftYellowLight.hidden = true
+        } else {
+            rightYellowLight.hidden = false
+            leftYellowLight.hidden = false
+        }
     }
     
-    func hideGreenLights() {
-        self.leftGreenLight.hidden = true
-        self.rightGreenLight.hidden = true
+    func hideGreenLights(hide: Bool) {
+        if (hide) {
+            leftGreenLight.hidden = true
+            rightGreenLight.hidden = true
+        } else {
+            leftGreenLight.hidden = false
+            rightGreenLight.hidden = false
+        }
     }
     
     func resetLights() {
-        hideGreenLights()
-        hideRedLights()
-        hideYellowLights()
+        hideGreenLights(true)
+        hideRedLights(true)
+        hideYellowLights(true)
     }
     
     @IBAction func startStopButton(sender: UIButton) {
         if (Int(counterLabel.text!) > 0 && !counting) {
-            counter = Int(counterLabel.text!)!
+            counter = Double(counterLabel.text!)!
             time = counter
-            self.leftGreenLight.hidden = false
-            self.rightGreenLight.hidden = false
+            hideGreenLights(false)
             if (secondsAndMinutes.selectedSegmentIndex == 0){
                 timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
             } else {
@@ -153,11 +161,37 @@ class ViewController: UIViewController {
     }
     
     @IBAction func modeButton(sender: UIButton) {
-        print("mode buttons")
+        if (!counting) {
+            if (inMode1) {
+                inMode1 = false
+                mode2.hidden = false
+            } else {
+                inMode1 = true
+                mode2.hidden = true
+            }
+        }
     }
     
+
     @IBAction func programButton(sender: UIButton) {
-        print("program button")
+        if (!inMode1 && rightGreenLight.hidden == true && rightYellowLight.hidden == true && !mode2set) {
+            hideGreenLights(false)
+        } else if (!inMode1 && rightGreenLight.hidden == false && !mode2set) {
+            m2.time1 = Double(counterLabel.text!)!
+
+            hideGreenLights(true)
+            hideYellowLights(false)
+        } else if (!inMode1 && rightYellowLight.hidden == false && !mode2set) {
+            m2.time2 = Double(counterLabel.text!)!
+            flashLights = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "yellowFlashingLights", userInfo: nil, repeats: true)
+            mode2set = true
+        } else if (mode2set) {
+            m2.time3 = Double(counterLabel.text!)!
+            flashLights.invalidate()
+            hideYellowLights(true)
+            mode2set = false
+            m2.isMode2 = true
+        }
     }
 }
 

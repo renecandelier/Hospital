@@ -175,7 +175,7 @@
                                             <constraint firstAttribute="width" constant="79" id="jn2-1i-k4y"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clearsContextBeforeDrawing="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yellowLight" translatesAutoresizingMaskIntoConstraints="NO" id="kpM-42-BbG">
+                                    <imageView hidden="YES" clearsContextBeforeDrawing="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yellowLight" translatesAutoresizingMaskIntoConstraints="NO" id="kpM-42-BbG">
                                         <rect key="frame" x="460" y="148" width="73" height="203"/>
                                         <animations/>
                                         <constraints>
