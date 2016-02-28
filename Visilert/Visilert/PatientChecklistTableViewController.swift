@@ -12,6 +12,7 @@ class PatientChecklistTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.tableView.registerClass(ChecklistTableViewCell.self, forCellReuseIdentifier: "cell")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -39,15 +40,24 @@ class PatientChecklistTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ChecklistTableViewCell
-
+//        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ChecklistTableViewCell
+        var cell:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("cell")
+        if (cell == nil) {
+            cell = UITableViewCell(style:UITableViewCellStyle.Subtitle, reuseIdentifier:"cell")
+        }
+//        cell!.textLabel!.text = "Hello World"
+//        cell.selfAssesSegmentedControl.addTarget(self, action: "segmentValue", forControlEvents: .ValueChanged)
         // Configure the cell...
 
-        return cell
+        return cell!
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Introductions"
+    }
+    
+    func segmentValue() {
+        
     }
 
     /*

@@ -22,6 +22,23 @@
 		2316C69F1C1CD6EB009BF97C /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2316C69A1C1CD6EB009BF97C /* readme.txt */; };
 		232C61E51C59D09D008AAF11 /* PatientChecklistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232C61E41C59D09D008AAF11 /* PatientChecklistTableViewController.swift */; };
 		232C61E71C59D132008AAF11 /* ChecklistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232C61E61C59D132008AAF11 /* ChecklistTableViewCell.swift */; };
+		2332D6591C6DED68005EBCBB /* Avent.obj in Resources */ = {isa = PBXBuildFile; fileRef = 2332D6581C6DED68005EBCBB /* Avent.obj */; };
+		2332D65B1C6DEDB3005EBCBB /* 3dViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332D65A1C6DEDB3005EBCBB /* 3dViewController.swift */; };
+		2332D65D1C6DEE31005EBCBB /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2332D65C1C6DEE31005EBCBB /* SceneKit.framework */; };
+		2332D65F1C6DEEDD005EBCBB /* testViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332D65E1C6DEEDD005EBCBB /* testViewController.swift */; };
+		2332D66A1C6DF021005EBCBB /* Avent-inter.lwo in Resources */ = {isa = PBXBuildFile; fileRef = 2332D6601C6DF021005EBCBB /* Avent-inter.lwo */; };
+		2332D66B1C6DF021005EBCBB /* Avent-inter.lxo in Resources */ = {isa = PBXBuildFile; fileRef = 2332D6611C6DF021005EBCBB /* Avent-inter.lxo */; };
+		2332D66C1C6DF021005EBCBB /* Avent.mtl in Resources */ = {isa = PBXBuildFile; fileRef = 2332D6621C6DF021005EBCBB /* Avent.mtl */; };
+		2332D66D1C6DF021005EBCBB /* interior_lod0.tga in Resources */ = {isa = PBXBuildFile; fileRef = 2332D6631C6DF021005EBCBB /* interior_lod0.tga */; };
+		2332D66E1C6DF021005EBCBB /* Lamborghinilogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2332D6641C6DF021005EBCBB /* Lamborghinilogo.jpg */; };
+		2332D66F1C6DF021005EBCBB /* lights_lod0.tga in Resources */ = {isa = PBXBuildFile; fileRef = 2332D6651C6DF021005EBCBB /* lights_lod0.tga */; };
+		2332D6701C6DF021005EBCBB /* lights.tga in Resources */ = {isa = PBXBuildFile; fileRef = 2332D6661C6DF021005EBCBB /* lights.tga */; };
+		2332D6711C6DF021005EBCBB /* nodamage_lod0.tga in Resources */ = {isa = PBXBuildFile; fileRef = 2332D6671C6DF021005EBCBB /* nodamage_lod0.tga */; };
+		2332D6721C6DF021005EBCBB /* nodamage.tga in Resources */ = {isa = PBXBuildFile; fileRef = 2332D6681C6DF021005EBCBB /* nodamage.tga */; };
+		2332D6731C6DF021005EBCBB /* plastic3_nrm.tga in Resources */ = {isa = PBXBuildFile; fileRef = 2332D6691C6DF021005EBCBB /* plastic3_nrm.tga */; };
+		233C85241C8366CC0015B9E3 /* VideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C85231C8366CC0015B9E3 /* VideosViewController.swift */; };
+		233C85261C8383D30015B9E3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C85251C8383D30015B9E3 /* LoginViewController.swift */; };
+		233C85281C8383DF0015B9E3 /* CreateUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C85271C8383DF0015B9E3 /* CreateUserViewController.swift */; };
 		237A70841C4A9F190028BA7B /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237A70831C4A9F190028BA7B /* FormViewController.swift */; };
 		23A56B4A1C4218AF005CCAD7 /* Mode2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A56B491C4218AF005CCAD7 /* Mode2.swift */; };
 		23EDAC761C23887F00F1F428 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EDAC751C23887F00F1F428 /* HomeScreenViewController.swift */; };
@@ -58,6 +75,23 @@
 		2316C69A1C1CD6EB009BF97C /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		232C61E41C59D09D008AAF11 /* PatientChecklistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientChecklistTableViewController.swift; sourceTree = "<group>"; };
 		232C61E61C59D132008AAF11 /* ChecklistTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistTableViewCell.swift; sourceTree = "<group>"; };
+		2332D6581C6DED68005EBCBB /* Avent.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Avent.obj; sourceTree = "<group>"; };
+		2332D65A1C6DEDB3005EBCBB /* 3dViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 3dViewController.swift; sourceTree = "<group>"; };
+		2332D65C1C6DEE31005EBCBB /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
+		2332D65E1C6DEEDD005EBCBB /* testViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = testViewController.swift; sourceTree = "<group>"; };
+		2332D6601C6DF021005EBCBB /* Avent-inter.lwo */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avent-inter.lwo"; sourceTree = "<group>"; };
+		2332D6611C6DF021005EBCBB /* Avent-inter.lxo */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avent-inter.lxo"; sourceTree = "<group>"; };
+		2332D6621C6DF021005EBCBB /* Avent.mtl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Avent.mtl; sourceTree = "<group>"; };
+		2332D6631C6DF021005EBCBB /* interior_lod0.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = interior_lod0.tga; sourceTree = "<group>"; };
+		2332D6641C6DF021005EBCBB /* Lamborghinilogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Lamborghinilogo.jpg; sourceTree = "<group>"; };
+		2332D6651C6DF021005EBCBB /* lights_lod0.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = lights_lod0.tga; sourceTree = "<group>"; };
+		2332D6661C6DF021005EBCBB /* lights.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = lights.tga; sourceTree = "<group>"; };
+		2332D6671C6DF021005EBCBB /* nodamage_lod0.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = nodamage_lod0.tga; sourceTree = "<group>"; };
+		2332D6681C6DF021005EBCBB /* nodamage.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = nodamage.tga; sourceTree = "<group>"; };
+		2332D6691C6DF021005EBCBB /* plastic3_nrm.tga */ = {isa = PBXFileReference; lastKnownFileType = file; path = plastic3_nrm.tga; sourceTree = "<group>"; };
+		233C85231C8366CC0015B9E3 /* VideosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideosViewController.swift; sourceTree = "<group>"; };
+		233C85251C8383D30015B9E3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		233C85271C8383DF0015B9E3 /* CreateUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserViewController.swift; sourceTree = "<group>"; };
 		237A70831C4A9F190028BA7B /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		23A56B491C4218AF005CCAD7 /* Mode2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mode2.swift; sourceTree = "<group>"; };
 		23EDAC751C23887F00F1F428 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2332D65D1C6DEE31005EBCBB /* SceneKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +120,7 @@
 		2316C6661C1CC9E0009BF97C = {
 			isa = PBXGroup;
 			children = (
+				2332D65C1C6DEE31005EBCBB /* SceneKit.framework */,
 				2316C6711C1CC9E0009BF97C /* Visilert */,
 				2316C6891C1CC9E0009BF97C /* VisilertTests */,
 				2316C6701C1CC9E0009BF97C /* Products */,
@@ -104,11 +140,15 @@
 		2316C6711C1CC9E0009BF97C /* Visilert */ = {
 			isa = PBXGroup;
 			children = (
+				23331EFD1C822D4C001FD2C9 /* 3D */,
 				2316C6721C1CC9E0009BF97C /* AppDelegate.swift */,
 				2316C6741C1CC9E0009BF97C /* ViewController.swift */,
 				23EDAC751C23887F00F1F428 /* HomeScreenViewController.swift */,
 				23EDAC771C238A9100F1F428 /* StartDemoViewController.swift */,
 				2316C6761C1CC9E0009BF97C /* Main.storyboard */,
+				233C85271C8383DF0015B9E3 /* CreateUserViewController.swift */,
+				233C85251C8383D30015B9E3 /* LoginViewController.swift */,
+				233C85231C8366CC0015B9E3 /* VideosViewController.swift */,
 				232C61E41C59D09D008AAF11 /* PatientChecklistTableViewController.swift */,
 				232C61E61C59D132008AAF11 /* ChecklistTableViewCell.swift */,
 				237A70831C4A9F190028BA7B /* FormViewController.swift */,
@@ -141,6 +181,26 @@
 				2316C69A1C1CD6EB009BF97C /* readme.txt */,
 			);
 			path = "digital-7";
+			sourceTree = "<group>";
+		};
+		23331EFD1C822D4C001FD2C9 /* 3D */ = {
+			isa = PBXGroup;
+			children = (
+				2332D65E1C6DEEDD005EBCBB /* testViewController.swift */,
+				2332D65A1C6DEDB3005EBCBB /* 3dViewController.swift */,
+				2332D6581C6DED68005EBCBB /* Avent.obj */,
+				2332D6601C6DF021005EBCBB /* Avent-inter.lwo */,
+				2332D6611C6DF021005EBCBB /* Avent-inter.lxo */,
+				2332D6621C6DF021005EBCBB /* Avent.mtl */,
+				2332D6631C6DF021005EBCBB /* interior_lod0.tga */,
+				2332D6641C6DF021005EBCBB /* Lamborghinilogo.jpg */,
+				2332D6651C6DF021005EBCBB /* lights_lod0.tga */,
+				2332D6661C6DF021005EBCBB /* lights.tga */,
+				2332D6671C6DF021005EBCBB /* nodamage_lod0.tga */,
+				2332D6681C6DF021005EBCBB /* nodamage.tga */,
+				2332D6691C6DF021005EBCBB /* plastic3_nrm.tga */,
+			);
+			name = 3D;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,13 +286,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				2316C69D1C1CD6EB009BF97C /* digital-7 (mono).ttf in Resources */,
+				2332D66D1C6DF021005EBCBB /* interior_lod0.tga in Resources */,
+				2332D6721C6DF021005EBCBB /* nodamage.tga in Resources */,
+				2332D6711C6DF021005EBCBB /* nodamage_lod0.tga in Resources */,
 				2316C6801C1CC9E0009BF97C /* LaunchScreen.storyboard in Resources */,
+				2332D66C1C6DF021005EBCBB /* Avent.mtl in Resources */,
+				2332D6591C6DED68005EBCBB /* Avent.obj in Resources */,
 				2316C67D1C1CC9E0009BF97C /* Assets.xcassets in Resources */,
 				2316C69E1C1CD6EB009BF97C /* digital-7.ttf in Resources */,
+				2332D66E1C6DF021005EBCBB /* Lamborghinilogo.jpg in Resources */,
 				2316C69C1C1CD6EB009BF97C /* digital-7 (mono italic).ttf in Resources */,
 				2316C6781C1CC9E0009BF97C /* Main.storyboard in Resources */,
+				2332D66F1C6DF021005EBCBB /* lights_lod0.tga in Resources */,
+				2332D6731C6DF021005EBCBB /* plastic3_nrm.tga in Resources */,
 				2316C69F1C1CD6EB009BF97C /* readme.txt in Resources */,
+				2332D66A1C6DF021005EBCBB /* Avent-inter.lwo in Resources */,
+				2332D66B1C6DF021005EBCBB /* Avent-inter.lxo in Resources */,
 				2316C69B1C1CD6EB009BF97C /* digital-7 (italic).ttf in Resources */,
+				2332D6701C6DF021005EBCBB /* lights.tga in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,14 +321,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				233C85261C8383D30015B9E3 /* LoginViewController.swift in Sources */,
 				2316C6751C1CC9E0009BF97C /* ViewController.swift in Sources */,
 				23EDAC761C23887F00F1F428 /* HomeScreenViewController.swift in Sources */,
 				232C61E51C59D09D008AAF11 /* PatientChecklistTableViewController.swift in Sources */,
 				2316C6731C1CC9E0009BF97C /* AppDelegate.swift in Sources */,
 				230777FC1C44BA4C00C6CA1D /* Mode1.swift in Sources */,
 				2316C67B1C1CC9E0009BF97C /* Visilert.xcdatamodeld in Sources */,
+				2332D65F1C6DEEDD005EBCBB /* testViewController.swift in Sources */,
 				23EDAC781C238A9100F1F428 /* StartDemoViewController.swift in Sources */,
+				233C85241C8366CC0015B9E3 /* VideosViewController.swift in Sources */,
 				237A70841C4A9F190028BA7B /* FormViewController.swift in Sources */,
+				233C85281C8383DF0015B9E3 /* CreateUserViewController.swift in Sources */,
+				2332D65B1C6DEDB3005EBCBB /* 3dViewController.swift in Sources */,
 				232C61E71C59D132008AAF11 /* ChecklistTableViewCell.swift in Sources */,
 				23A56B4A1C4218AF005CCAD7 /* Mode2.swift in Sources */,
 			);

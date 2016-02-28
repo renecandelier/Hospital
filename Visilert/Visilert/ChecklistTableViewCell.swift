@@ -10,6 +10,8 @@ import UIKit
 
 class ChecklistTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var selfAssesSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var evaluatorSegmentedControl: UISegmentedControl!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
