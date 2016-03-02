@@ -29,7 +29,7 @@ class testViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         
-        let scene = SCNScene(named: "Avent.obj")!
+        let scene = SCNScene(named: "Visalert_Whole_v015.obj")!
 //        let sceneView = self.view as! SCNView
 //        sceneView.scene = scene
 

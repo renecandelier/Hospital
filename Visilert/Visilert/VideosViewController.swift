@@ -26,7 +26,6 @@ class VideosViewController: UIViewController, UIWebViewDelegate {
         loadChargingVideo()
     }
     
-    
     func loadChargingVideo() {
         loadVideoWithLink("http://player.vimeo.com/video/115305575")
     }

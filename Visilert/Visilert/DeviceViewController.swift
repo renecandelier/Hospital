@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class DeviceViewController: UIViewController {
     @IBOutlet weak var leftYellowLight: UIImageView!
     @IBOutlet weak var leftRedLight: UIImageView!
     @IBOutlet weak var leftGreenLight: UIImageView!
