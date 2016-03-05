@@ -10,48 +10,31 @@ import UIKit
 
 class HomeScreenViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    var titleForNextView = ""
+    var pdf = ""
+    
+    @IBAction func showOperatingInstructions(sender: AnyObject) {
+        titleForNextView = "Operating Instructions"
+        pdf = "Visilert Operating Instructions for 3.0 December 11 2015"
+        performSegueWithIdentifier("PDF", sender: self)
     }
     
+    
+    @IBAction func showRoundingCards(sender: AnyObject) {
+        titleForNextView = "Rounding Card"
+        pdf = "Visilert Rounding Employer Checklist"
+        performSegueWithIdentifier("PDF", sender: self)
+    }
 
-    /*
+
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "PDF" {
+            let upcoming = segue.destinationViewController as! PDFViewController
+            upcoming.title = titleForNextView
+            upcoming.pdfFile = pdf
+        }
     }
-    */
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let Device = UIDevice.currentDevice()
-        
-        let iosVersion = NSString(string: Device.systemVersion).doubleValue
-        
-        let iOS8 = iosVersion >= 8
-            
-            if (iOS8){
-                presentedViewController?.presentingViewController?.providesPresentationContextTransitionStyle = true
-                presentingViewController?.definesPresentationContext = true
-            self.navigationController?.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-//                [presentingController setModalPresentationStyle:UIModalPresentationOverCurrentContext];
-                
-            }
-            else {
-                
-                self.navigationController?.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
-                
-                
-            }
-    }
-    
-   }
+
+}

@@ -28,6 +28,7 @@ class DeviceViewController: UIViewController {
     @IBOutlet weak var mode2: UILabel!
     @IBOutlet weak var mode1: UILabel!
     
+    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var secondsAndMinutes: UISegmentedControl!
     var enableInputClicksWhenVisible: Bool {
         return true
@@ -47,6 +48,13 @@ class DeviceViewController: UIViewController {
                 mode2.hidden = false
             }
         }
+    }
+    
+    @IBAction func closeWindow(sender: AnyObject) {
+//        
+//        let viewController: HomeScreenViewController = self.storyboard?.instantiateViewControllerWithIdentifier("home") as! HomeScreenViewController
+//        
+//        presentViewController(viewController, animated: true, completion: nil)
     }
     
     func updateTimer() {

@@ -48,9 +48,8 @@ class CreateUserViewController: UIViewController {
             user.password = passwordTextField.text
             user.training = 0.0
             self.navigationController?.popToRootViewControllerAnimated(false)
-//            let viewController: VideosViewController = self.storyboard?.instantiateViewControllerWithIdentifier("training") as! VideosViewController
-//            self.navigationController?.pushViewController(viewController, animated: true)
-//            performSegueWithIdentifier("training", sender: self)
+            let viewController: TrainingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("guide") as! TrainingViewController
+                        presentViewController(viewController, animated: true, completion: nil)
             do {
                 try managedObjectContext.save()
             } catch let error as NSError  {

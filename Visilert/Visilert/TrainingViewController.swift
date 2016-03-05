@@ -10,6 +10,9 @@ import UIKit
 
 class TrainingViewController: UIViewController {
     
+    @IBAction func closeButton(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     @IBAction func step1(sender: AnyObject) {
         let newController = (storyboard?.instantiateViewControllerWithIdentifier("video"))! as! VideosViewController
         let oldController = childViewControllers.last! as UIViewController
@@ -27,11 +30,10 @@ class TrainingViewController: UIViewController {
     @IBAction func step2Button(sender: AnyObject) {
         let newController = (storyboard?.instantiateViewControllerWithIdentifier("device"))! as! DeviceViewController
         let oldController = childViewControllers.last! as UIViewController
-        
         oldController.willMoveToParentViewController(nil)
         addChildViewController(newController)
         newController.view.frame = oldController.view.frame
-        
+        newController.closeButton.hidden = true
         transitionFromViewController(oldController, toViewController: newController, duration: 0.25, options: .TransitionCrossDissolve, animations:{ () -> Void in
             // nothing needed here
             }, completion: { (finished) -> Void in
@@ -40,7 +42,8 @@ class TrainingViewController: UIViewController {
         })
     }
     @IBAction func step3(sender: AnyObject) {
-        let newController = (storyboard?.instantiateViewControllerWithIdentifier("rounding"))! as! RoundingChecklistTableViewController
+        let newController = (storyboard?.instantiateViewControllerWithIdentifier("PDF"))! as! PDFViewController
+        newController.pdfFile = "Visilert Rounding Employer Checklist"
         let oldController = childViewControllers.last! as UIViewController
         
         oldController.willMoveToParentViewController(nil)
@@ -57,23 +60,6 @@ class TrainingViewController: UIViewController {
     }
     
     @IBAction func step4(sender: AnyObject) {
-        let newController = (storyboard?.instantiateViewControllerWithIdentifier("card"))! as! PatientChecklistTableViewController
-        let oldController = childViewControllers.last! as UIViewController
-        
-        oldController.willMoveToParentViewController(nil)
-        addChildViewController(newController)
-        newController.view.frame = oldController.view.frame
-        
-        transitionFromViewController(oldController, toViewController: newController, duration: 0.25, options: .TransitionCrossDissolve, animations:{ () -> Void in
-            // nothing needed here
-            }, completion: { (finished) -> Void in
-                oldController.removeFromParentViewController()
-                newController.didMoveToParentViewController(self)
-        })
-
-    }
-    
-    @IBAction func step5(sender: AnyObject) {
         let emailAlert = UIAlertController(title: "", message: "Selecting YES indicates that you have gone through all the steps of the training", preferredStyle: .Alert)
         emailAlert.addAction(UIAlertAction(title: "NO", style: .Cancel, handler: nil))
         emailAlert.addAction(UIAlertAction(title: "YES", style: .Default, handler: { (UIAlertAction) -> Void in
