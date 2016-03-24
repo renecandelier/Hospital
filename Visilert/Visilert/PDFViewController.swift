@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class PDFViewController: UIViewController {
+class PDFViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var webView: UIWebView!
     var pdfFile = ""
@@ -20,21 +21,34 @@ class PDFViewController: UIViewController {
         }
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func sendFile(sender: UIButton) {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["dpreston10@gmail.com"])
+            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+            
+            if let pdf = NSBundle.mainBundle().pathForResource(pdfFile, ofType: "pdf")  {
+                
+                if let fileData = NSData(contentsOfFile: pdf) {
+                    print("File data loaded.")
+                    mail.addAttachmentData(fileData, mimeType: "application/pdf", fileName: "file.pdf")
+                }
+            }
+            
+            presentViewController(mail, animated: true, completion: nil)
+        } else {
+            // show failure alert
+        }
+        
+        
+//        // locate folder containing pdf file
+//        let documentsPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
+//        
+//        let pdfFileName = documentsPath.stringByAppendingPathComponent("chart.pdf")
+//        let fileData = NSData(contentsOfFile: pdfFileName)
+//        mc.addAttachmentData(fileData, mimeType: "application/pdf", fileName: chart)
     }
-    */
 
 }

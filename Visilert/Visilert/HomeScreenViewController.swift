@@ -10,8 +10,19 @@ import UIKit
 
 class HomeScreenViewController: UIViewController {
 
+    // MARK: - Properties
     var titleForNextView = ""
     var pdf = ""
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.navigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.navigationBarHidden = false
+    }
     
     @IBAction func showOperatingInstructions(sender: AnyObject) {
         titleForNextView = "Operating Instructions"
@@ -25,7 +36,6 @@ class HomeScreenViewController: UIViewController {
         pdf = "Visilert Rounding Employer Checklist"
         performSegueWithIdentifier("PDF", sender: self)
     }
-
 
     // MARK: - Navigation
 

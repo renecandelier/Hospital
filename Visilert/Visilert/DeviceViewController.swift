@@ -8,7 +8,9 @@
 
 import UIKit
 
-class DeviceViewController: UIViewController {
+class DeviceViewController: UIViewController, UITextViewDelegate {
+    
+    // MARK: - Outlets
     @IBOutlet weak var leftYellowLight: UIImageView!
     @IBOutlet weak var leftRedLight: UIImageView!
     @IBOutlet weak var leftGreenLight: UIImageView!
@@ -16,6 +18,15 @@ class DeviceViewController: UIViewController {
     @IBOutlet weak var rightYellowLight: UIImageView!
     @IBOutlet weak var rightGreenLight: UIImageView!
     @IBOutlet weak var counterLabel: UILabel!
+    @IBOutlet weak var mode2: UILabel!
+    @IBOutlet weak var mode1: UILabel!
+    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var secondsAndMinutes: UISegmentedControl!
+    @IBOutlet weak var trianingStackView: UIStackView!
+    @IBOutlet weak var trainingLabel: UILabel!
+    @IBOutlet weak var traningNumber: UIButton!
+    
+    // MARK: - Properties
     var timer = NSTimer()
     var flashLights = NSTimer()
     var counter = 0.0
@@ -25,14 +36,7 @@ class DeviceViewController: UIViewController {
     var mode2set = false
     var m2 = Mode2()
     var m1 = Mode1()
-    @IBOutlet weak var mode2: UILabel!
-    @IBOutlet weak var mode1: UILabel!
-    
-    @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var secondsAndMinutes: UISegmentedControl!
-    var enableInputClicksWhenVisible: Bool {
-        return true
-    }
+    var training = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,10 +55,10 @@ class DeviceViewController: UIViewController {
     }
     
     @IBAction func closeWindow(sender: AnyObject) {
-//        
-//        let viewController: HomeScreenViewController = self.storyboard?.instantiateViewControllerWithIdentifier("home") as! HomeScreenViewController
-//        
-//        presentViewController(viewController, animated: true, completion: nil)
+        //
+        //        let viewController: HomeScreenViewController = self.storyboard?.instantiateViewControllerWithIdentifier("home") as! HomeScreenViewController
+        //
+        //        presentViewController(viewController, animated: true, completion: nil)
     }
     
     func updateTimer() {
@@ -63,7 +67,7 @@ class DeviceViewController: UIViewController {
             hideGreenLights(true)
             hideYellowLights(false)
         } else if (time == (m2.isMode2 ? m2.time2 : m1.time2)) {
-            flashLights = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "yellowFlashingLights", userInfo: nil, repeats: true)
+            flashLights = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: #selector(yellowFlashingLights), userInfo: nil, repeats: true)
         } else if (time <= (m2.isMode2 ? m2.time3 : m1.time3)) {
             flashLights.invalidate()
             timer.invalidate()
@@ -84,7 +88,6 @@ class DeviceViewController: UIViewController {
     
     @IBAction func numberButton(sender: UIButton) {
         if (!counting) {
-            
             if (counterLabel.text?.stringByReplacingOccurrencesOfString(" ", withString: "").characters.count == 4) {
                 counterLabel.text = "0";
             } else {
@@ -97,13 +100,17 @@ class DeviceViewController: UIViewController {
                     } else {
                         number = sender.currentTitle!
                     }
-                        //                    let attributedString = NSMutableAttributedString(string: "\(counterLabel.text!)\(sender.currentTitle!)")
-                        //                    attributedString.addAttribute(NSKernAttributeName, value: spacing, range: NSMakeRange(0, 1))
-                        //                    counterLabel.attributedText = attributedString
+                    //                    let attributedString = NSMutableAttributedString(string: "\(counterLabel.text!)\(sender.currentTitle!)")
+                    //                    attributedString.addAttribute(NSKernAttributeName, value: spacing, range: NSMakeRange(0, 1))
+                    //                    counterLabel.attributedText = attributedString
                     
                     counterLabel.text = "\(counterLabel.text!)\(number)"
                 }
             }
+        }
+        if training == true && counterLabel.text == "60" {
+            trainingLabel.text = "Select the Start/Stop Button"
+            traningNumber.setTitle("2", forState: .Normal)
         }
     }
     
@@ -159,6 +166,13 @@ class DeviceViewController: UIViewController {
     }
     
     @IBAction func startStopButton(sender: UIButton) {
+        if training == true && counterLabel.text == "60" {
+            trainingLabel.text = "Press Start/Stop when seeing patient"
+            traningNumber.setTitle("3", forState: .Normal)
+        } else if training == true {
+                trainingLabel.text = "Press Reset to start timer from 60"
+                traningNumber.setTitle("4", forState: .Normal)
+        }
         if (Int(counterLabel.text!) > 0 && !counting) {
             counter = Double(counterLabel.text!)!
             if (!mode1.hidden) {
@@ -170,9 +184,9 @@ class DeviceViewController: UIViewController {
             time = counter
             hideGreenLights(false)
             if (secondsAndMinutes.selectedSegmentIndex == 0){
-                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
+                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
             } else {
-                timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: "updateTimer", userInfo: nil, repeats: true)
+                timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
             }
             counting = true
         } else {
@@ -196,25 +210,41 @@ class DeviceViewController: UIViewController {
         }
     }
     
-    
     @IBAction func programButton(sender: UIButton) {
         if (!inMode1 && rightGreenLight.hidden == true && rightYellowLight.hidden == true && !mode2set) {
             hideGreenLights(false)
+            counterLabel.text = "0"
         } else if (!inMode1 && rightGreenLight.hidden == false && !mode2set) {
             m2.time1 = Double(counterLabel.text!)!
             hideGreenLights(true)
             hideYellowLights(false)
+            counterLabel.text = "0"
         } else if (!inMode1 && rightYellowLight.hidden == false && !mode2set) {
             m2.time2 = Double(counterLabel.text!)!
-            flashLights = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "yellowFlashingLights", userInfo: nil, repeats: true)
+            flashLights = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: #selector(yellowFlashingLights), userInfo: nil, repeats: true)
             mode2set = true
+            counterLabel.text = "0"
         } else if (mode2set) {
             m2.time3 = Double(counterLabel.text!)!
             flashLights.invalidate()
             hideYellowLights(true)
             mode2set = false
             m2.isMode2 = true
+            counterLabel.text = "\(Int(m2.time1 + m2.time2 + m2.time3))"
         }
+    }
+    
+    @IBAction func startTraining(sender: AnyObject) {
+        if trianingStackView.hidden == true {
+            trianingStackView.hidden = false
+            training = true
+            traningNumber.setTitle("1", forState: .Normal)
+            trainingLabel.text = "Enter 60"
+        } else {
+            trianingStackView.hidden = true
+            training = false
+        }
+        
     }
 }
 
