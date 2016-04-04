@@ -24,6 +24,12 @@ class HomeScreenViewController: UIViewController {
         navigationController?.navigationBarHidden = false
     }
     
+    @IBAction func showHowItWorks(sender: AnyObject) {
+        titleForNextView = "How It Works"
+        pdf = "How it Works"
+        performSegueWithIdentifier("PDF", sender: self)
+    }
+    
     @IBAction func showOperatingInstructions(sender: AnyObject) {
         titleForNextView = "Operating Instructions"
         pdf = "Visilert Operating Instructions for 3.0 December 11 2015"

@@ -58,6 +58,7 @@
 		2397D1601C9882D800C077C4 /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2397D14A1C9882D800C077C4 /* POPVector.mm */; };
 		2397D1611C9882D800C077C4 /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2397D14D1C9882D800C077C4 /* TransformationMatrix.cpp */; };
 		23A56B4A1C4218AF005CCAD7 /* Mode2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A56B491C4218AF005CCAD7 /* Mode2.swift */; };
+		23A92CFC1CAE0D6D009EDB75 /* How it Works.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 23A92CFB1CAE0D6D009EDB75 /* How it Works.pdf */; };
 		23BD95411C8867DF0008F7AC /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BD95401C8867DF0008F7AC /* PDFViewController.swift */; };
 		23BD95431C8868350008F7AC /* Visilert Operating Instructions for 3.0 December 11 2015.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 23BD95421C8868350008F7AC /* Visilert Operating Instructions for 3.0 December 11 2015.pdf */; };
 		23EDAC761C23887F00F1F428 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EDAC751C23887F00F1F428 /* HomeScreenViewController.swift */; };
@@ -166,6 +167,7 @@
 		2397D14E1C9882D800C077C4 /* TransformationMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransformationMatrix.h; path = pop/WebCore/TransformationMatrix.h; sourceTree = "<group>"; };
 		2397D14F1C9882D800C077C4 /* UnitBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnitBezier.h; path = pop/WebCore/UnitBezier.h; sourceTree = "<group>"; };
 		23A56B491C4218AF005CCAD7 /* Mode2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mode2.swift; sourceTree = "<group>"; };
+		23A92CFB1CAE0D6D009EDB75 /* How it Works.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "How it Works.pdf"; sourceTree = "<group>"; };
 		23BD95401C8867DF0008F7AC /* PDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 		23BD95421C8868350008F7AC /* Visilert Operating Instructions for 3.0 December 11 2015.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Visilert Operating Instructions for 3.0 December 11 2015.pdf"; sourceTree = "<group>"; };
 		23EDAC751C23887F00F1F428 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 		2338D9F91C8A68880069CE1A /* PDFs */ = {
 			isa = PBXGroup;
 			children = (
+				23A92CFB1CAE0D6D009EDB75 /* How it Works.pdf */,
 				23BD95421C8868350008F7AC /* Visilert Operating Instructions for 3.0 December 11 2015.pdf */,
 				2338D9F71C8A62350069CE1A /* Visilert Rounding Employer Checklist.pdf */,
 			);
@@ -464,6 +467,7 @@
 			files = (
 				2316C69D1C1CD6EB009BF97C /* digital-7 (mono).ttf in Resources */,
 				2338D9F81C8A62350069CE1A /* Visilert Rounding Employer Checklist.pdf in Resources */,
+				23A92CFC1CAE0D6D009EDB75 /* How it Works.pdf in Resources */,
 				23BD95431C8868350008F7AC /* Visilert Operating Instructions for 3.0 December 11 2015.pdf in Resources */,
 				2316C6801C1CC9E0009BF97C /* LaunchScreen.storyboard in Resources */,
 				2316C67D1C1CC9E0009BF97C /* Assets.xcassets in Resources */,

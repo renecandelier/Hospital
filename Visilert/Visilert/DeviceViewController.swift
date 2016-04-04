@@ -20,11 +20,12 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var mode2: UILabel!
     @IBOutlet weak var mode1: UILabel!
-    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var secondsAndMinutes: UISegmentedControl!
     @IBOutlet weak var trianingStackView: UIStackView!
+    @IBOutlet weak var trainingNumber: UILabel!
     @IBOutlet weak var trainingLabel: UILabel!
-    @IBOutlet weak var traningNumber: UIButton!
+    @IBOutlet weak var trainingMode1: UIButton!
+    @IBOutlet weak var trainingMode2: UIButton!
     
     // MARK: - Properties
     var timer = NSTimer()
@@ -36,7 +37,10 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
     var mode2set = false
     var m2 = Mode2()
     var m1 = Mode1()
-    var training = false
+    var inTrainingMode1 = false
+    var inTrainingMode2 = false
+    let mode2Training = ["Press the “Mode” button.", "Press the program “Prog” button" , "Enter 1200", "Press Prog", "Enter 120", "Press Prog", "Enter 120", "Press the program “Prog” button","Select the Start/Stop Button", "Press “Start/Stop” button to stop the countdown."]
+    let mode1Training = ["Enter 60", "Select the Start/Stop Button", "Press Start/Stop when seeing patient", "Press Reset to start timer from 60"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,13 +56,6 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
                 mode2.hidden = false
             }
         }
-    }
-    
-    @IBAction func closeWindow(sender: AnyObject) {
-        //
-        //        let viewController: HomeScreenViewController = self.storyboard?.instantiateViewControllerWithIdentifier("home") as! HomeScreenViewController
-        //
-        //        presentViewController(viewController, animated: true, completion: nil)
     }
     
     func updateTimer() {
@@ -100,17 +97,23 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
                     } else {
                         number = sender.currentTitle!
                     }
-                    //                    let attributedString = NSMutableAttributedString(string: "\(counterLabel.text!)\(sender.currentTitle!)")
-                    //                    attributedString.addAttribute(NSKernAttributeName, value: spacing, range: NSMakeRange(0, 1))
-                    //                    counterLabel.attributedText = attributedString
-                    
                     counterLabel.text = "\(counterLabel.text!)\(number)"
                 }
             }
         }
-        if training == true && counterLabel.text == "60" {
-            trainingLabel.text = "Select the Start/Stop Button"
-            traningNumber.setTitle("2", forState: .Normal)
+        if inTrainingMode2 == true {
+            if counterLabel.text == "1200" {
+                nextTrainingMode2Step(3)
+            }
+            if counterLabel.text == "120" && !flashLights.valid {
+                nextTrainingMode2Step(5)
+            }
+            if counterLabel.text == "120" && flashLights.valid {
+                nextTrainingMode2Step(7)
+            }
+        }
+        if inTrainingMode1 == true && counterLabel.text == "60" {
+            nextTrainingMode1Step(1)
         }
     }
     
@@ -166,12 +169,13 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func startStopButton(sender: UIButton) {
-        if training == true && counterLabel.text == "60" {
-            trainingLabel.text = "Press Start/Stop when seeing patient"
-            traningNumber.setTitle("3", forState: .Normal)
-        } else if training == true {
-                trainingLabel.text = "Press Reset to start timer from 60"
-                traningNumber.setTitle("4", forState: .Normal)
+        if inTrainingMode1 == true && counterLabel.text == "60" {
+            nextTrainingMode1Step(2)
+        } else if inTrainingMode1 == true {
+            nextTrainingMode1Step(3)
+        }
+        if inTrainingMode2 == true {
+            nextTrainingMode2Step(9)
         }
         if (Int(counterLabel.text!) > 0 && !counting) {
             counter = Double(counterLabel.text!)!
@@ -199,6 +203,9 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func modeButton(sender: UIButton) {
+        if inTrainingMode2 == true {
+            nextTrainingMode2Step(1)
+        }
         if (!counting) {
             if (inMode1) {
                 inMode1 = false
@@ -210,7 +217,23 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    @IBAction func programButton(sender: UIButton) {
+    @IBAction func programButton(sender:
+        UIButton) {
+        if inTrainingMode2 == true {
+            if counterLabel.text == "0" {
+                nextTrainingMode2Step(2)
+            }
+            if counterLabel.text == "1200" {
+                nextTrainingMode2Step(4)
+            }
+            if counterLabel.text == "120" && rightYellowLight.hidden == false {
+                nextTrainingMode2Step(6)
+            }
+            if counterLabel.text == "120" && flashLights.valid {
+                nextTrainingMode2Step(8)
+            }
+
+        }
         if (!inMode1 && rightGreenLight.hidden == true && rightYellowLight.hidden == true && !mode2set) {
             hideGreenLights(false)
             counterLabel.text = "0"
@@ -235,16 +258,54 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func startTraining(sender: AnyObject) {
-        if trianingStackView.hidden == true {
+        if inTrainingMode1 == false {
             trianingStackView.hidden = false
-            training = true
-            traningNumber.setTitle("1", forState: .Normal)
-            trainingLabel.text = "Enter 60"
+            inTrainingMode1 = true
+            nextTrainingMode1Step(0)
+            trainingMode2.enabled = false
+            trainingMode2.alpha = 0.5
+            trainingMode1.setTitle("Stop Mode I", forState: .Normal)
+            trainingMode1.backgroundColor = UIColor.redColor()
         } else {
+            inTrainingMode1 = !inTrainingMode1
+            trainingMode1.setTitle("Start Mode I", forState: .Normal)
+            trainingMode2.enabled = true
+            trainingMode2.alpha = 1.0
             trianingStackView.hidden = true
-            training = false
+            trainingMode1.backgroundColor = UIColor(red:0.67, green:0.78, blue:0.17, alpha:1.00)
         }
-        
+    }
+    
+    @IBAction func startTranningMode2(sender: AnyObject) {
+        if inTrainingMode2 == false {
+            trianingStackView.hidden = false
+            inTrainingMode2 = true
+            trainingMode1.enabled = false
+            trainingMode1.alpha = 0.5
+            trainingMode2.setTitle("Stop Mode II", forState: .Normal)
+            nextTrainingMode2Step(0)
+            inMode1 = true
+            mode2.hidden = true
+            trainingMode2.backgroundColor = UIColor.redColor()
+        } else {
+            inTrainingMode2 = !inTrainingMode2
+            trainingMode1.enabled = true
+            trainingMode1.alpha = 1.0
+            trainingMode2.setTitle("Start Mode II", forState: .Normal)
+            trianingStackView.hidden = true
+            trainingMode2.backgroundColor = UIColor(red:0.67, green:0.78, blue:0.17, alpha:1.00)
+
+        }
+    }
+    
+    func nextTrainingMode2Step(step: Int) {
+        trainingNumber.text = String(step + 1)
+        trainingLabel.text = mode2Training[step]
+    }
+    
+    func nextTrainingMode1Step(step: Int) {
+        trainingNumber.text = String(step + 1)
+        trainingLabel.text = mode1Training[step]
     }
 }
 

@@ -33,7 +33,6 @@ class TrainingViewController: UIViewController {
         oldController.willMoveToParentViewController(nil)
         addChildViewController(newController)
         newController.view.frame = oldController.view.frame
-        newController.closeButton.hidden = true
         transitionFromViewController(oldController, toViewController: newController, duration: 0.25, options: .TransitionCrossDissolve, animations:{ () -> Void in
             // nothing needed here
             }, completion: { (finished) -> Void in
@@ -69,8 +68,13 @@ class TrainingViewController: UIViewController {
     }
     
     func showDevice() {
-        let viewController: DeviceViewController = self.storyboard?.instantiateViewControllerWithIdentifier("device") as! DeviceViewController
-        presentViewController(viewController, animated: true, completion: nil)
+        let upcoming = self.storyboard?.instantiateViewControllerWithIdentifier("home") as! HomeScreenViewController
+        let navigationController = UINavigationController(rootViewController: upcoming)
+        self.presentViewController(navigationController, animated: true, completion: nil)
+        
+        
+//        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("device") as! DeviceViewController
+//        presentViewController(viewController, animated: true, completion: nil)
     }
     
 
