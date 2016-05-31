@@ -26,6 +26,7 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var trainingLabel: UILabel!
     @IBOutlet weak var trainingMode1: UIButton!
     @IBOutlet weak var trainingMode2: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
     
     // MARK: - Properties
     var timer = NSTimer()
@@ -39,7 +40,7 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
     var m1 = Mode1()
     var inTrainingMode1 = false
     var inTrainingMode2 = false
-    let mode2Training = ["Press the “Mode” button.", "Press the program “Prog” button" , "Enter 1200", "Press Prog", "Enter 120", "Press Prog", "Enter 120", "Press the program “Prog” button","Select the Start/Stop Button", "Press “Start/Stop” button to stop the countdown."]
+    let mode2Training = ["Press the “Mode” button.", "Press the program “Prog” button" , "Enter 120", "Press Prog", "Enter 30", "Press Prog", "Enter 30", "Press the program “Prog” button","Select the Start/Stop Button", "Press “Start/Stop” button to stop the countdown."]
     let mode1Training = ["Enter 60", "Select the Start/Stop Button", "Press Start/Stop when seeing patient", "Press Reset to start timer from 60"]
     
     override func viewDidLoad() {
@@ -102,13 +103,13 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
             }
         }
         if inTrainingMode2 == true {
-            if counterLabel.text == "1200" {
+            if counterLabel.text == "120" {
                 nextTrainingMode2Step(3)
             }
-            if counterLabel.text == "120" && !flashLights.valid {
+            if counterLabel.text == "30" && !flashLights.valid {
                 nextTrainingMode2Step(5)
             }
-            if counterLabel.text == "120" && flashLights.valid {
+            if counterLabel.text == "30" && flashLights.valid {
                 nextTrainingMode2Step(7)
             }
         }
@@ -180,7 +181,7 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
         if (Int(counterLabel.text!) > 0 && !counting) {
             counter = Double(counterLabel.text!)!
             if (!mode1.hidden) {
-                m1.time1 = counter * 90 / 100
+                m1.time1 = counter * 10 / 100
                 m1.time2 = 0.0
                 m1.time3 = counter - (counter * 1.1)
                 m1.isMode1 = true
@@ -194,12 +195,16 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
             }
             counting = true
         } else {
-            counterLabel.text = "0"
-            resetLights()
-            flashLights.invalidate()
-            counting = false
-            timer.invalidate()
+            reset()
         }
+    }
+    
+    func reset() {
+        counterLabel.text = "0"
+        resetLights()
+        flashLights.invalidate()
+        counting = false
+        timer.invalidate()
     }
     
     @IBAction func modeButton(sender: UIButton) {
@@ -223,16 +228,16 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
             if counterLabel.text == "0" {
                 nextTrainingMode2Step(2)
             }
-            if counterLabel.text == "1200" {
+            if counterLabel.text == "120" {
                 nextTrainingMode2Step(4)
             }
-            if counterLabel.text == "120" && rightYellowLight.hidden == false {
+            if counterLabel.text == "30" && rightYellowLight.hidden == false {
                 nextTrainingMode2Step(6)
             }
-            if counterLabel.text == "120" && flashLights.valid {
+            if counterLabel.text == "30" && flashLights.valid {
                 nextTrainingMode2Step(8)
             }
-
+            
         }
         if (!inMode1 && rightGreenLight.hidden == true && rightYellowLight.hidden == true && !mode2set) {
             hideGreenLights(false)
@@ -267,6 +272,7 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
             trainingMode1.setTitle("Stop Mode I", forState: .Normal)
             trainingMode1.backgroundColor = UIColor.redColor()
         } else {
+            reset()
             inTrainingMode1 = !inTrainingMode1
             trainingMode1.setTitle("Start Mode I", forState: .Normal)
             trainingMode2.enabled = true
@@ -288,13 +294,13 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
             mode2.hidden = true
             trainingMode2.backgroundColor = UIColor.redColor()
         } else {
+            reset()
             inTrainingMode2 = !inTrainingMode2
             trainingMode1.enabled = true
             trainingMode1.alpha = 1.0
             trainingMode2.setTitle("Start Mode II", forState: .Normal)
             trianingStackView.hidden = true
             trainingMode2.backgroundColor = UIColor(red:0.67, green:0.78, blue:0.17, alpha:1.00)
-
         }
     }
     
@@ -307,5 +313,6 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
         trainingNumber.text = String(step + 1)
         trainingLabel.text = mode1Training[step]
     }
+    
 }
 

@@ -26,7 +26,7 @@ class HomeScreenViewController: UIViewController {
     
     @IBAction func showHowItWorks(sender: AnyObject) {
         titleForNextView = "How It Works"
-        pdf = "How it Works"
+        pdf = "How It Works"
         performSegueWithIdentifier("PDF", sender: self)
     }
     
@@ -34,23 +34,6 @@ class HomeScreenViewController: UIViewController {
         titleForNextView = "Operating Instructions"
         pdf = "Visilert Operating Instructions for 3.0 December 11 2015"
         performSegueWithIdentifier("PDF", sender: self)
-    }
-    
-    
-    @IBAction func showRoundingCards(sender: AnyObject) {
-        titleForNextView = "Rounding Card"
-        pdf = "Visilert Rounding Employer Checklist"
-        performSegueWithIdentifier("PDF", sender: self)
-    }
-
-    // MARK: - Navigation
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "PDF" {
-            let upcoming = segue.destinationViewController as! PDFViewController
-            upcoming.title = titleForNextView
-            upcoming.pdfFile = pdf
-        }
     }
 
 }

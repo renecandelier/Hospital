@@ -14,6 +14,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     
+    var account: Account!
+    
     @IBAction func cancelButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -26,11 +28,11 @@ class LoginViewController: UIViewController {
             presentViewController(missingFieldsAlert, animated: true, completion: nil)
         } else {
             let appDelegate =
-            UIApplication.sharedApplication().delegate as! AppDelegate
+                UIApplication.sharedApplication().delegate as! AppDelegate
             let managedObjectContext = appDelegate.managedObjectContext
             let entityDescription =
-            NSEntityDescription.entityForName("Account",
-                inManagedObjectContext: managedObjectContext)
+                NSEntityDescription.entityForName("Account",
+                                                  inManagedObjectContext: managedObjectContext)
             let request = NSFetchRequest()
             request.entity = entityDescription
             let pred = NSPredicate(format: "(username = %@) AND (password = %@)", usernameTextField.text!, passwordTextField.text!)
@@ -39,7 +41,8 @@ class LoginViewController: UIViewController {
                 let list = try managedObjectContext.executeFetchRequest(request)
                 if list.count > 0 {
                     let user = list[0] as! Account
-                    if (user.training?.integerValue < 5) {
+                    account = user
+                    if (user.training != "Done") {
                         openTraining()
                     } else {
                         openDevice()
@@ -58,38 +61,17 @@ class LoginViewController: UIViewController {
     
     func openTraining() {
         let viewController: TrainingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("guide") as! TrainingViewController
-        
+        viewController.user = account
         presentViewController(viewController, animated: true, completion: nil)
-//        performSegueWithIdentifier("training", sender: self)
     }
     
     func openDevice() {
+        let viewController: DeviceViewController = self.storyboard?.instantiateViewControllerWithIdentifier("device") as! DeviceViewController
+        viewController.closeButton?.hidden = false
+        presentViewController(viewController, animated: true, completion: nil)
+    }
+    
+    override func performSegueWithIdentifier(identifier: String, sender: AnyObject?) {
         
-
-//                    self.navigationController?.pushViewController(viewController, animated: true)
-//                    performSegueWithIdentifier("training", sender: self)
-//        
-//        dismissViewControllerAnimated(true) { () -> Void in
-        
-            
-            
-            let viewController: DeviceViewController = self.storyboard?.instantiateViewControllerWithIdentifier("device") as! DeviceViewController
-            
-            presentViewController(viewController, animated: true, completion: nil)
-//            let viewController: DeviceViewController = self.storyboard?.instantiateViewControllerWithIdentifier("device") as! DeviceViewController
-//            self.navigationController?.pushViewController(viewController, animated: true)
-
-            
-        
-//        }
-        
-        
-//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("device") as! DeviceViewController
-//        
-//        let nav = UINavigationController(rootViewController: self)
-//        nav.pushViewController(nextViewController, animated:false)
-//        self.presentViewController(nav, animated:true, completion:nil)
-//        
     }
 }

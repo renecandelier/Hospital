@@ -26,7 +26,6 @@ class CreateUserViewController: UIViewController {
             missingFieldsAlert.addAction(ok)
             presentViewController(missingFieldsAlert, animated: true, completion: nil)
         }
-        //check if username already exist
         if (passwordTextField.text != reEnterPasswordTextField.text) {
             let passwordAlert = UIAlertController(title: "Error", message: "Passwords do not match", preferredStyle: .Alert)
             passwordAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: nil))
@@ -46,15 +45,16 @@ class CreateUserViewController: UIViewController {
                 insertIntoManagedObjectContext: managedObjectContext)
             user.username = usernameTextField.text
             user.password = passwordTextField.text
-            user.training = 0.0
-            self.navigationController?.popToRootViewControllerAnimated(false)
-            let viewController: TrainingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("guide") as! TrainingViewController
-                        presentViewController(viewController, animated: true, completion: nil)
+            user.training = "Started"
             do {
                 try managedObjectContext.save()
             } catch let error as NSError  {
                 print("Could not save \(error), \(error.userInfo)")
             }
+            self.navigationController?.popToRootViewControllerAnimated(false)
+            let viewController: TrainingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("guide") as! TrainingViewController
+            viewController.user = user
+            presentViewController(viewController, animated: true, completion: nil)
         }
     }
     

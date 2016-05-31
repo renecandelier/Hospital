@@ -19,6 +19,6 @@ extension Account {
     @NSManaged var name: String?
     @NSManaged var lastname: String?
     @NSManaged var email: String?
-    @NSManaged var training: NSNumber?
+    @NSManaged var training: String?
 
 }
