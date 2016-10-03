@@ -45,11 +45,11 @@
 		23A56B4A1C4218AF005CCAD7 /* Mode2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A56B491C4218AF005CCAD7 /* Mode2.swift */; };
 		23A6A4641CB6901300A7122E /* IMAGEViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A6A4631CB6901300A7122E /* IMAGEViewController.swift */; };
 		23BD95411C8867DF0008F7AC /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BD95401C8867DF0008F7AC /* PDFViewController.swift */; };
-		23BD95431C8868350008F7AC /* Visilert Operating Instructions for 3.0 December 11 2015.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 23BD95421C8868350008F7AC /* Visilert Operating Instructions for 3.0 December 11 2015.pdf */; };
+		23BD95431C8868350008F7AC /* Operating Instructions.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 23BD95421C8868350008F7AC /* Operating Instructions.pdf */; };
 		23C615D81CB70FA600B67E1F /* SecondRoundingCardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C615D71CB70FA600B67E1F /* SecondRoundingCardsTableViewController.swift */; };
 		23C615DA1CB73AE900B67E1F /* RoundingCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C615D91CB73AE900B67E1F /* RoundingCardsViewController.swift */; };
-		23EDAC761C23887F00F1F428 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EDAC751C23887F00F1F428 /* HomeScreenViewController.swift */; };
 		23EDAC781C238A9100F1F428 /* StartDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EDAC771C238A9100F1F428 /* StartDemoViewController.swift */; };
+		8A36B5D31DA1FDD500E1EDA8 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23EDAC751C23887F00F1F428 /* HomeScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,7 +105,7 @@
 		23A56B491C4218AF005CCAD7 /* Mode2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mode2.swift; sourceTree = "<group>"; };
 		23A6A4631CB6901300A7122E /* IMAGEViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMAGEViewController.swift; sourceTree = "<group>"; };
 		23BD95401C8867DF0008F7AC /* PDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
-		23BD95421C8868350008F7AC /* Visilert Operating Instructions for 3.0 December 11 2015.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Visilert Operating Instructions for 3.0 December 11 2015.pdf"; sourceTree = "<group>"; };
+		23BD95421C8868350008F7AC /* Operating Instructions.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Operating Instructions.pdf"; sourceTree = "<group>"; };
 		23C615D71CB70FA600B67E1F /* SecondRoundingCardsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondRoundingCardsTableViewController.swift; sourceTree = "<group>"; };
 		23C615D91CB73AE900B67E1F /* RoundingCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundingCardsViewController.swift; sourceTree = "<group>"; };
 		23EDAC751C23887F00F1F428 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				231804081CDCF58900DB754A /* How It Works.pdf */,
-				23BD95421C8868350008F7AC /* Visilert Operating Instructions for 3.0 December 11 2015.pdf */,
+				23BD95421C8868350008F7AC /* Operating Instructions.pdf */,
 				2338D9F71C8A62350069CE1A /* Visilert Rounding Employer Checklist.pdf */,
 				2318040A1CDCF92C00DB754A /* Visilert Hourly Rounding Card.pdf */,
 				2318040B1CDCF92C00DB754A /* Visilert Patient Card.pdf */,
@@ -309,15 +309,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = CCE;
 				TargetAttributes = {
 					2316C66E1C1CC9E0009BF97C = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = J2EY74W5G9;
+						LastSwiftMigration = 0800;
 					};
 					2316C6851C1CC9E0009BF97C = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 2316C66E1C1CC9E0009BF97C;
 					};
 				};
@@ -349,7 +351,7 @@
 				2316C69D1C1CD6EB009BF97C /* digital-7 (mono).ttf in Resources */,
 				2338D9F81C8A62350069CE1A /* Visilert Rounding Employer Checklist.pdf in Resources */,
 				2318040D1CDCF92C00DB754A /* Visilert Hourly Rounding Card.pdf in Resources */,
-				23BD95431C8868350008F7AC /* Visilert Operating Instructions for 3.0 December 11 2015.pdf in Resources */,
+				23BD95431C8868350008F7AC /* Operating Instructions.pdf in Resources */,
 				2316C6801C1CC9E0009BF97C /* LaunchScreen.storyboard in Resources */,
 				2316C67D1C1CC9E0009BF97C /* Assets.xcassets in Resources */,
 				2318040E1CDCF92C00DB754A /* Visilert Patient Card.pdf in Resources */,
@@ -377,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A36B5D31DA1FDD500E1EDA8 /* HomeScreenViewController.swift in Sources */,
 				23C615DA1CB73AE900B67E1F /* RoundingCardsViewController.swift in Sources */,
 				233C852E1C83E9150015B9E3 /* TrainingViewController.swift in Sources */,
 				233C85261C8383D30015B9E3 /* LoginViewController.swift in Sources */,
@@ -384,7 +387,6 @@
 				2316C6751C1CC9E0009BF97C /* DeviceViewController.swift in Sources */,
 				23A6A4641CB6901300A7122E /* IMAGEViewController.swift in Sources */,
 				23BD95411C8867DF0008F7AC /* PDFViewController.swift in Sources */,
-				23EDAC761C23887F00F1F428 /* HomeScreenViewController.swift in Sources */,
 				2350F15A1C86A03700C6230B /* RoundingChecklistTableViewController.swift in Sources */,
 				232C61E51C59D09D008AAF11 /* PatientChecklistTableViewController.swift in Sources */,
 				2316C6731C1CC9E0009BF97C /* AppDelegate.swift in Sources */,
@@ -458,8 +460,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -504,8 +508,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -525,6 +531,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/B84276/_Rene/Hospital/Visilert/Visilert/Visilert-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -533,11 +540,11 @@
 		2316C6901C1CC9E0009BF97C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Rene Jorge (J2EY74W5G9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Visilert/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.visilert.dev;
@@ -545,6 +552,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -552,17 +560,18 @@
 		2316C6911C1CC9E0009BF97C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Rene Jorge (J2EY74W5G9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Visilert/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.visilert.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -575,6 +584,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.visilert.VisilertTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Visilert.app/Visilert";
 			};
 			name = Debug;
@@ -587,6 +597,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.visilert.VisilertTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Visilert.app/Visilert";
 			};
 			name = Release;

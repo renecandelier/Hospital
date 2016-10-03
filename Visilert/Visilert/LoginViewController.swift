@@ -20,6 +20,12 @@ class LoginViewController: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    @IBAction func showDisclaimer(sender: AnyObject) {
+        let disclaimerAlert = UIAlertController(title: "Warning", message: "The Visilert app is designed for staff to practice setting/using the device. The app is not designed to save your education information. For core competency verification, you should complete all four (4) steps in order, and to completion. This will allow you to send the final check off document to your manager.", preferredStyle: .Alert)
+        disclaimerAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(disclaimerAlert, animated: true, completion: nil)
+    }
+    
     @IBAction func loginButton(sender: AnyObject) {
         if (usernameTextField.text?.isEmpty == true || passwordTextField.text?.isEmpty == true) {
             let missingFieldsAlert = UIAlertController(title: "Missing Field", message: "Please fill in values for all the fields.", preferredStyle: .Alert)

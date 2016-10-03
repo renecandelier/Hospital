@@ -16,7 +16,7 @@ class Device360ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        panRec.addTarget(self, action: "handlePan:")
+        panRec.addTarget(self, action: #selector(Device360ViewController.handlePan(_:)))
         deviceImageView.addGestureRecognizer(panRec)
     }
     func handlePan(gestureRecognizer: UIPanGestureRecognizer) {

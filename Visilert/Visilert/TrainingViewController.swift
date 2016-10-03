@@ -89,11 +89,11 @@ class TrainingViewController: UIViewController,MFMailComposeViewControllerDelega
         UIGraphicsBeginImageContext(screenRect.size)
         let ctx = UIGraphicsGetCurrentContext()
         UIColor.blackColor().set()
-        CGContextFillRect(ctx, screenRect)
+        CGContextFillRect(ctx!, screenRect)
         view.layer.renderInContext(ctx!)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return newImage
+        return newImage!
     }
     
     func sendEmail(view: UIView) {

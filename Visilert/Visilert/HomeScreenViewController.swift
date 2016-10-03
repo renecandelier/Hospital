@@ -24,16 +24,23 @@ class HomeScreenViewController: UIViewController {
         navigationController?.navigationBarHidden = false
     }
     
-    @IBAction func showHowItWorks(sender: AnyObject) {
+    @IBAction func presentHowItWorks(sender: UIButton) {
         titleForNextView = "How It Works"
         pdf = "How It Works"
         performSegueWithIdentifier("PDF", sender: self)
     }
     
-    @IBAction func showOperatingInstructions(sender: AnyObject) {
+    @IBAction func presentOperatingInstructions(sender: UIButton) {
         titleForNextView = "Operating Instructions"
-        pdf = "Visilert Operating Instructions for 3.0 December 11 2015"
+        pdf = "Operating Instructions"
         performSegueWithIdentifier("PDF", sender: self)
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "PDF" {
+            let upcoming = segue.destinationViewController as! PDFViewController
+                upcoming.title = titleForNextView
+                upcoming.pdfFile = pdf
+        }
+    }
 }

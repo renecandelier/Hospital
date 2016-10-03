@@ -38,7 +38,7 @@ class testViewController: UIViewController {
         carObject.backgroundColor = UIColor.blackColor()
         carObject.autoenablesDefaultLighting = true
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: "sceneTapped:")
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(testViewController.sceneTapped(_:)))
         let gestureRecognizers = NSMutableArray()
         gestureRecognizers.addObject(tapGesture)
         if let arr = carObject.gestureRecognizers { gestureRecognizers.addObjectsFromArray(arr) }

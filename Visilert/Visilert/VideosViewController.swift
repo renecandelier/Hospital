@@ -46,6 +46,9 @@ class VideosViewController: UIViewController, UIWebViewDelegate {
         loadVideoWithLink("http://player.vimeo.com/video/115305568")
     }
     
+    @IBAction func showNewOperatingVideo(sender: AnyObject) {
+                loadVideoWithLink("http://player.vimeo.com/video/173109254")
+    }
     func loadVideoWithLink (link: String) {
         let url: NSURL = NSURL(string: link)!
         let request: NSURLRequest = NSURLRequest(URL: url)

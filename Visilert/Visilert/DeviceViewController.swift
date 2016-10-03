@@ -40,7 +40,7 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
     var m1 = Mode1()
     var inTrainingMode1 = false
     var inTrainingMode2 = false
-    let mode2Training = ["Press the “Mode” button.", "Press the program “Prog” button" , "Enter 120", "Press Prog", "Enter 30", "Press Prog", "Enter 30", "Press the program “Prog” button","Select the Start/Stop Button", "Press “Start/Stop” button to stop the countdown."]
+    let mode2Training = ["Press the “Mode” button.", "Press the program “Prog” button" , "Enter 120", "Press Prog", "Enter 30", "Press Prog", "Enter 30", "Press the program “Prog” button","Select the Start/Stop Button","Press the Start/Stop Button when seeing the Patient", "Press the Reset to Start Timer from 180"]
     let mode1Training = ["Enter 60", "Select the Start/Stop Button", "Press Start/Stop when seeing patient", "Press Reset to start timer from 60"]
     
     override func viewDidLoad() {
@@ -102,7 +102,7 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
                 }
             }
         }
-        if inTrainingMode2 == true {
+        if inTrainingMode2 {
             if counterLabel.text == "120" {
                 nextTrainingMode2Step(3)
             }
@@ -113,12 +113,17 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
                 nextTrainingMode2Step(7)
             }
         }
-        if inTrainingMode1 == true && counterLabel.text == "60" {
+        if inTrainingMode1 && counterLabel.text == "60" {
             nextTrainingMode1Step(1)
         }
     }
     
     @IBAction func resetButton(sender: UIButton) {
+        if inTrainingMode1 && trainingLabel.text == mode1Training[3] {
+         nextTrainingMode1Step(1)
+        } else if inTrainingMode2 && trainingLabel.text == mode2Training[10] {
+            nextTrainingMode2Step(8)
+        }
         if (!counting) {
             if (counterLabel.text == "0") {
                 counterLabel.text = String(Int(counter))
@@ -170,12 +175,14 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func startStopButton(sender: UIButton) {
-        if inTrainingMode1 == true && counterLabel.text == "60" {
+        if inTrainingMode1 && counterLabel.text == "60" {
             nextTrainingMode1Step(2)
-        } else if inTrainingMode1 == true {
+        } else if inTrainingMode1 {
             nextTrainingMode1Step(3)
         }
-        if inTrainingMode2 == true {
+        if inTrainingMode2 && trainingLabel.text == mode2Training[9] {
+            nextTrainingMode2Step(10)
+        } else if inTrainingMode2 {
             nextTrainingMode2Step(9)
         }
         if (Int(counterLabel.text!) > 0 && !counting) {
