@@ -39,16 +39,18 @@ class TrainingViewController: UIViewController,MFMailComposeViewControllerDelega
         oldController.willMoveToParentViewController(nil)
         addChildViewController(newController)
         newController.view.frame = oldController.view.frame
+        newController.closeButton.hidden = true
         transitionFromViewController(oldController, toViewController: newController, duration: 0.25, options: .TransitionCrossDissolve, animations:{ () -> Void in
             // nothing needed here
             }, completion: { (finished) -> Void in
                 oldController.removeFromParentViewController()
                 newController.didMoveToParentViewController(self)
+
         })
     }
+    
     @IBAction func step3(sender: AnyObject) {
         let newController = (storyboard?.instantiateViewControllerWithIdentifier("RoundingCardsViewController"))! as! RoundingCardsViewController
-        //        newController.pdfFile = "Visilert Rounding Employer Checklist"
         let oldController = childViewControllers.last! as UIViewController
         
         oldController.willMoveToParentViewController(nil)

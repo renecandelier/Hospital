@@ -59,6 +59,10 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    @IBAction func closeView(sender: UIButton) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func updateTimer() {
         time = time - 1
         if (time == (m2.isMode2 ? m2.time1 : m1.time1)) {

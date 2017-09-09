@@ -134,7 +134,6 @@
 		2316C6661C1CC9E0009BF97C = {
 			isa = PBXGroup;
 			children = (
-				2332D65C1C6DEE31005EBCBB /* SceneKit.framework */,
 				2316C6711C1CC9E0009BF97C /* Visilert */,
 				2316C6891C1CC9E0009BF97C /* VisilertTests */,
 				2316C6701C1CC9E0009BF97C /* Products */,
@@ -160,6 +159,7 @@
 				2338D9F91C8A68880069CE1A /* PDFs */,
 				2316C6811C1CC9E0009BF97C /* Info.plist */,
 				2316C67C1C1CC9E0009BF97C /* Assets.xcassets */,
+				2332D65C1C6DEE31005EBCBB /* SceneKit.framework */,
 			);
 			path = Visilert;
 			sourceTree = "<group>";
@@ -553,7 +553,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -572,7 +572,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 2.3;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
