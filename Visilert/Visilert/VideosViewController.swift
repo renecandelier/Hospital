@@ -17,12 +17,12 @@ class VideosViewController: UIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         videoWebView.delegate = self
         videoWebView.scrollView.scrollsToTop = false;
-        videoWebView.scrollView.scrollEnabled = false;
+        videoWebView.scrollView.isScrollEnabled = false;
         videoWebView.mediaPlaybackRequiresUserAction = true;
         loadChargingVideo()
     }
     
-    @IBAction func chargingButton(sender: AnyObject) {
+    @IBAction func chargingButton(_ sender: AnyObject) {
         loadChargingVideo()
     }
     
@@ -30,28 +30,28 @@ class VideosViewController: UIViewController, UIWebViewDelegate {
         loadVideoWithLink("http://player.vimeo.com/video/115305575")
     }
     
-    @IBAction func disinfectingButton(sender: AnyObject) {
+    @IBAction func disinfectingButton(_ sender: AnyObject) {
         loadVideoWithLink("http://player.vimeo.com/video/115305573")
     }
     
-    @IBAction func operatingButton(sender: AnyObject) {
+    @IBAction func operatingButton(_ sender: AnyObject) {
         loadVideoWithLink("http://player.vimeo.com/video/115305571")
     }
     
-    @IBAction func resettingButton(sender: AnyObject) {
+    @IBAction func resettingButton(_ sender: AnyObject) {
         loadVideoWithLink("http://player.vimeo.com/video/115305569")
     }
     
-    @IBAction func wallBraketButton(sender: AnyObject) {
+    @IBAction func wallBraketButton(_ sender: AnyObject) {
         loadVideoWithLink("http://player.vimeo.com/video/115305568")
     }
     
-    @IBAction func showNewOperatingVideo(sender: AnyObject) {
+    @IBAction func showNewOperatingVideo(_ sender: AnyObject) {
                 loadVideoWithLink("http://player.vimeo.com/video/173109254")
     }
-    func loadVideoWithLink (link: String) {
-        let url = NSURL(string: link)!
-        let request = NSURLRequest(URL: url)
+    func loadVideoWithLink (_ link: String) {
+        let url = URL(string: link)!
+        let request = URLRequest(url: url)
         videoWebView.loadRequest(request)
     }
 }

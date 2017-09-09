@@ -13,7 +13,7 @@ class RoundingCardsViewController: UIViewController {
     @IBOutlet weak var userTextField: UITextField!
     @IBOutlet weak var evaluatorTextField: UITextField!
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         userTextField.resignFirstResponder()
         evaluatorTextField.resignFirstResponder()
     }

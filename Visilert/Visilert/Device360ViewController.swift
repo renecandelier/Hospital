@@ -19,9 +19,9 @@ class Device360ViewController: UIViewController {
         panRec.addTarget(self, action: #selector(Device360ViewController.handlePan(_:)))
         deviceImageView.addGestureRecognizer(panRec)
     }
-    func handlePan(gestureRecognizer: UIPanGestureRecognizer) {
-        if gestureRecognizer.state == UIGestureRecognizerState.Began || gestureRecognizer.state == UIGestureRecognizerState.Changed {
-            let translation = gestureRecognizer.translationInView(self.view)
+    func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
+        if gestureRecognizer.state == UIGestureRecognizerState.began || gestureRecognizer.state == UIGestureRecognizerState.changed {
+            let translation = gestureRecognizer.translation(in: self.view)
             // note: 'view' is optional and need to be unwrapped
             
             if (UIImage(named: "b_0\(Int(translation.x)/50)") != nil) {
@@ -30,21 +30,21 @@ class Device360ViewController: UIViewController {
         }
     }
 
-    @IBAction func slider(sender: AnyObject) {
+    @IBAction func slider(_ sender: AnyObject) {
         if (UIImage(named: "b_0\(deviceSlider.value)") != nil) {
             deviceImageView.image = UIImage(named: "b_0\(deviceSlider.value)")
         }
     }
 
 
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 //        super.touchesMoved(touches, withEvent: event)
 //        let touchLocation = touch.locationInView(self.view)
 
         let touch = touches.first! as UITouch
         
         if (touch.view == deviceImageView) {
-            print("touchesMoved | This is an ImageView \(touches.reverse().first)")
+            print("touchesMoved | This is an ImageView \(touches.reversed().first)")
         }else{
             print("touchesMoved | This is not an ImageView")
         }

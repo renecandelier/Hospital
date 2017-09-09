@@ -20,15 +20,15 @@ class RoundingCardsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0  :
             pdf = "Visilert Rounding Employer Checklist"
@@ -41,15 +41,15 @@ class RoundingCardsTableViewController: UITableViewController {
         default :
             pdf = "Visilert Rounding Checklist"
         }
-            performSegueWithIdentifier("PDF", sender: self)
+            performSegue(withIdentifier: "PDF", sender: self)
     }
 
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PDF" {
-            let upcoming = segue.destinationViewController as! PDFViewController
+            let upcoming = segue.destination as! PDFViewController
             upcoming.title = pdf
             upcoming.pdfFile = pdf
         }

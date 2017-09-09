@@ -35,13 +35,13 @@ class testViewController: UIViewController {
 
     carObject.scene = scene
         
-        carObject.backgroundColor = UIColor.blackColor()
+        carObject.backgroundColor = UIColor.black
         carObject.autoenablesDefaultLighting = true
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(testViewController.sceneTapped(_:)))
         let gestureRecognizers = NSMutableArray()
-        gestureRecognizers.addObject(tapGesture)
-        if let arr = carObject.gestureRecognizers { gestureRecognizers.addObjectsFromArray(arr) }
+        gestureRecognizers.add(tapGesture)
+        if let arr = carObject.gestureRecognizers { gestureRecognizers.addObjects(from: arr) }
         carObject.gestureRecognizers = gestureRecognizers as? [UIGestureRecognizer]
         carObject.allowsCameraControl = true
 //
@@ -69,8 +69,8 @@ class testViewController: UIViewController {
 //        cameraOrbit.eulerAngles.y -= CGFloat(M_PI_4*3)
         
     }
-    func sceneTapped(recognizer: UITapGestureRecognizer) {
-        let location = recognizer.locationInView(carObject)
+    func sceneTapped(_ recognizer: UITapGestureRecognizer) {
+        let location = recognizer.location(in: carObject)
         
         let hitResults = carObject.hitTest(location, options: nil)
         if hitResults.count > 0 {

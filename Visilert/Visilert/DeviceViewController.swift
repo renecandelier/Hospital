@@ -7,6 +7,30 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class DeviceViewController: UIViewController, UITextViewDelegate {
     
@@ -29,8 +53,8 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var closeButton: UIButton!
     
     // MARK: - Properties
-    var timer = NSTimer()
-    var flashLights = NSTimer()
+    var timer = Timer()
+    var flashLights = Timer()
     var counter = 0.0
     var counting = false
     var time = 0.0
@@ -45,22 +69,22 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if (defaults.stringForKey("mode") == nil) {
-            defaults.setObject("1", forKey: "mode")
+        let defaults = UserDefaults.standard
+        if (defaults.string(forKey: "mode") == nil) {
+            defaults.set("1", forKey: "mode")
         } else {
-            if (defaults.stringForKey("mode") == "1") {
+            if (defaults.string(forKey: "mode") == "1") {
                 inMode1 = true
-                mode2.hidden = true
+                mode2.isHidden = true
             } else {
                 inMode1 = false
-                mode2.hidden = false
+                mode2.isHidden = false
             }
         }
     }
     
-    @IBAction func closeView(sender: UIButton) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeView(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
     func updateTimer() {
@@ -69,7 +93,7 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
             hideGreenLights(true)
             hideYellowLights(false)
         } else if (time == (m2.isMode2 ? m2.time2 : m1.time2)) {
-            flashLights = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: #selector(yellowFlashingLights), userInfo: nil, repeats: true)
+            flashLights = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(yellowFlashingLights), userInfo: nil, repeats: true)
         } else if (time <= (m2.isMode2 ? m2.time3 : m1.time3)) {
             flashLights.invalidate()
             timer.invalidate()
@@ -85,12 +109,12 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
     }
     
     func yellowFlashingLights() {
-        rightYellowLight.hidden ? hideYellowLights(false) : hideYellowLights(true)
+        rightYellowLight.isHidden ? hideYellowLights(false) : hideYellowLights(true)
     }
     
-    @IBAction func numberButton(sender: UIButton) {
+    @IBAction func numberButton(_ sender: UIButton) {
         if (!counting) {
-            if (counterLabel.text?.stringByReplacingOccurrencesOfString(" ", withString: "").characters.count == 4) {
+            if (counterLabel.text?.replacingOccurrences(of: " ", with: "").characters.count == 4) {
                 counterLabel.text = "0";
             } else {
                 if (Int(counterLabel.text!) == 0) {
@@ -110,10 +134,10 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
             if counterLabel.text == "120" {
                 nextTrainingMode2Step(3)
             }
-            if counterLabel.text == "30" && !flashLights.valid {
+            if counterLabel.text == "30" && !flashLights.isValid {
                 nextTrainingMode2Step(5)
             }
-            if counterLabel.text == "30" && flashLights.valid {
+            if counterLabel.text == "30" && flashLights.isValid {
                 nextTrainingMode2Step(7)
             }
         }
@@ -122,7 +146,7 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    @IBAction func resetButton(sender: UIButton) {
+    @IBAction func resetButton(_ sender: UIButton) {
         if inTrainingMode1 && trainingLabel.text == mode1Training[3] {
          nextTrainingMode1Step(1)
         } else if inTrainingMode2 && trainingLabel.text == mode2Training[10] {
@@ -142,33 +166,33 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    func hideRedLights(hide: Bool) {
+    func hideRedLights(_ hide: Bool) {
         if (hide) {
-            leftRedLight.hidden = true
-            rightRedLight.hidden = true
+            leftRedLight.isHidden = true
+            rightRedLight.isHidden = true
         } else {
-            leftRedLight.hidden = false
-            rightRedLight.hidden = false
+            leftRedLight.isHidden = false
+            rightRedLight.isHidden = false
         }
     }
     
-    func hideYellowLights(hide: Bool) {
+    func hideYellowLights(_ hide: Bool) {
         if (hide) {
-            rightYellowLight.hidden = true
-            leftYellowLight.hidden = true
+            rightYellowLight.isHidden = true
+            leftYellowLight.isHidden = true
         } else {
-            rightYellowLight.hidden = false
-            leftYellowLight.hidden = false
+            rightYellowLight.isHidden = false
+            leftYellowLight.isHidden = false
         }
     }
     
-    func hideGreenLights(hide: Bool) {
+    func hideGreenLights(_ hide: Bool) {
         if (hide) {
-            leftGreenLight.hidden = true
-            rightGreenLight.hidden = true
+            leftGreenLight.isHidden = true
+            rightGreenLight.isHidden = true
         } else {
-            leftGreenLight.hidden = false
-            rightGreenLight.hidden = false
+            leftGreenLight.isHidden = false
+            rightGreenLight.isHidden = false
         }
     }
     
@@ -178,7 +202,7 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
         hideYellowLights(true)
     }
     
-    @IBAction func startStopButton(sender: UIButton) {
+    @IBAction func startStopButton(_ sender: UIButton) {
         if inTrainingMode1 && counterLabel.text == "60" {
             nextTrainingMode1Step(2)
         } else if inTrainingMode1 {
@@ -191,7 +215,7 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
         }
         if (Int(counterLabel.text!) > 0 && !counting) {
             counter = Double(counterLabel.text!)!
-            if (!mode1.hidden) {
+            if (!mode1.isHidden) {
                 m1.time1 = counter * 10 / 100
                 m1.time2 = 0.0
                 m1.time3 = counter - (counter * 1.1)
@@ -200,9 +224,9 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
             time = counter
             hideGreenLights(false)
             if (secondsAndMinutes.selectedSegmentIndex == 0){
-                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+                timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
             } else {
-                timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+                timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
             }
             counting = true
         } else {
@@ -218,22 +242,22 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
         timer.invalidate()
     }
     
-    @IBAction func modeButton(sender: UIButton) {
+    @IBAction func modeButton(_ sender: UIButton) {
         if inTrainingMode2 == true {
             nextTrainingMode2Step(1)
         }
         if (!counting) {
             if (inMode1) {
                 inMode1 = false
-                mode2.hidden = false
+                mode2.isHidden = false
             } else {
                 inMode1 = true
-                mode2.hidden = true
+                mode2.isHidden = true
             }
         }
     }
     
-    @IBAction func programButton(sender:
+    @IBAction func programButton(_ sender:
         UIButton) {
         if inTrainingMode2 == true {
             if counterLabel.text == "0" {
@@ -242,25 +266,25 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
             if counterLabel.text == "120" {
                 nextTrainingMode2Step(4)
             }
-            if counterLabel.text == "30" && rightYellowLight.hidden == false {
+            if counterLabel.text == "30" && rightYellowLight.isHidden == false {
                 nextTrainingMode2Step(6)
             }
-            if counterLabel.text == "30" && flashLights.valid {
+            if counterLabel.text == "30" && flashLights.isValid {
                 nextTrainingMode2Step(8)
             }
             
         }
-        if (!inMode1 && rightGreenLight.hidden == true && rightYellowLight.hidden == true && !mode2set) {
+        if (!inMode1 && rightGreenLight.isHidden == true && rightYellowLight.isHidden == true && !mode2set) {
             hideGreenLights(false)
             counterLabel.text = "0"
-        } else if (!inMode1 && rightGreenLight.hidden == false && !mode2set) {
+        } else if (!inMode1 && rightGreenLight.isHidden == false && !mode2set) {
             m2.time1 = Double(counterLabel.text!)!
             hideGreenLights(true)
             hideYellowLights(false)
             counterLabel.text = "0"
-        } else if (!inMode1 && rightYellowLight.hidden == false && !mode2set) {
+        } else if (!inMode1 && rightYellowLight.isHidden == false && !mode2set) {
             m2.time2 = Double(counterLabel.text!)!
-            flashLights = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: #selector(yellowFlashingLights), userInfo: nil, repeats: true)
+            flashLights = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(yellowFlashingLights), userInfo: nil, repeats: true)
             mode2set = true
             counterLabel.text = "0"
         } else if (mode2set) {
@@ -273,54 +297,54 @@ class DeviceViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    @IBAction func startTraining(sender: AnyObject) {
+    @IBAction func startTraining(_ sender: AnyObject) {
         if inTrainingMode1 == false {
-            trianingStackView.hidden = false
+            trianingStackView.isHidden = false
             inTrainingMode1 = true
             nextTrainingMode1Step(0)
-            trainingMode2.enabled = false
+            trainingMode2.isEnabled = false
             trainingMode2.alpha = 0.5
-            trainingMode1.setTitle("Stop Mode I", forState: .Normal)
-            trainingMode1.backgroundColor = UIColor.redColor()
+            trainingMode1.setTitle("Stop Mode I", for: UIControlState())
+            trainingMode1.backgroundColor = UIColor.red
         } else {
             reset()
             inTrainingMode1 = !inTrainingMode1
-            trainingMode1.setTitle("Start Mode I", forState: .Normal)
-            trainingMode2.enabled = true
+            trainingMode1.setTitle("Start Mode I", for: UIControlState())
+            trainingMode2.isEnabled = true
             trainingMode2.alpha = 1.0
-            trianingStackView.hidden = true
+            trianingStackView.isHidden = true
             trainingMode1.backgroundColor = UIColor(red:0.67, green:0.78, blue:0.17, alpha:1.00)
         }
     }
     
-    @IBAction func startTranningMode2(sender: AnyObject) {
+    @IBAction func startTranningMode2(_ sender: AnyObject) {
         if inTrainingMode2 == false {
-            trianingStackView.hidden = false
+            trianingStackView.isHidden = false
             inTrainingMode2 = true
-            trainingMode1.enabled = false
+            trainingMode1.isEnabled = false
             trainingMode1.alpha = 0.5
-            trainingMode2.setTitle("Stop Mode II", forState: .Normal)
+            trainingMode2.setTitle("Stop Mode II", for: UIControlState())
             nextTrainingMode2Step(0)
             inMode1 = true
-            mode2.hidden = true
-            trainingMode2.backgroundColor = UIColor.redColor()
+            mode2.isHidden = true
+            trainingMode2.backgroundColor = UIColor.red
         } else {
             reset()
             inTrainingMode2 = !inTrainingMode2
-            trainingMode1.enabled = true
+            trainingMode1.isEnabled = true
             trainingMode1.alpha = 1.0
-            trainingMode2.setTitle("Start Mode II", forState: .Normal)
-            trianingStackView.hidden = true
+            trainingMode2.setTitle("Start Mode II", for: UIControlState())
+            trianingStackView.isHidden = true
             trainingMode2.backgroundColor = UIColor(red:0.67, green:0.78, blue:0.17, alpha:1.00)
         }
     }
     
-    func nextTrainingMode2Step(step: Int) {
+    func nextTrainingMode2Step(_ step: Int) {
         trainingNumber.text = String(step + 1)
         trainingLabel.text = mode2Training[step]
     }
     
-    func nextTrainingMode1Step(step: Int) {
+    func nextTrainingMode1Step(_ step: Int) {
         trainingNumber.text = String(step + 1)
         trainingLabel.text = mode1Training[step]
     }

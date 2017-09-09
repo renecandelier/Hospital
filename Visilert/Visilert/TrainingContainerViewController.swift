@@ -12,7 +12,7 @@ class TrainingContainerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        performSegueWithIdentifier("train", sender: self)
+        performSegue(withIdentifier: "train", sender: self)
     }
 
 }

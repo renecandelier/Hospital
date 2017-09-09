@@ -15,61 +15,61 @@ class TrainingViewController: UIViewController,MFMailComposeViewControllerDelega
     
     var user: Account!
     
-    @IBAction func closeButton(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closeButton(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func step1(sender: AnyObject) {
-        let newController = (storyboard?.instantiateViewControllerWithIdentifier("video"))! as! VideosViewController
+    @IBAction func step1(_ sender: AnyObject) {
+        let newController = (storyboard?.instantiateViewController(withIdentifier: "video"))! as! VideosViewController
         let oldController = childViewControllers.last! as UIViewController
-        oldController.willMoveToParentViewController(nil)
+        oldController.willMove(toParentViewController: nil)
         addChildViewController(newController)
         newController.view.frame = oldController.view.frame
-        transitionFromViewController(oldController, toViewController: newController, duration: 0.25, options: .TransitionCrossDissolve, animations:{ () -> Void in
+        transition(from: oldController, to: newController, duration: 0.25, options: .transitionCrossDissolve, animations:{ () -> Void in
             // nothing needed here
             }, completion: { (finished) -> Void in
                 oldController.removeFromParentViewController()
-                newController.didMoveToParentViewController(self)
+                newController.didMove(toParentViewController: self)
         })
     }
     
-    @IBAction func step2Button(sender: AnyObject) {
-        let newController = (storyboard?.instantiateViewControllerWithIdentifier("device"))! as! DeviceViewController
+    @IBAction func step2Button(_ sender: AnyObject) {
+        let newController = (storyboard?.instantiateViewController(withIdentifier: "device"))! as! DeviceViewController
         let oldController = childViewControllers.last! as UIViewController
-        oldController.willMoveToParentViewController(nil)
+        oldController.willMove(toParentViewController: nil)
         addChildViewController(newController)
         newController.view.frame = oldController.view.frame
-        newController.closeButton.hidden = true
-        transitionFromViewController(oldController, toViewController: newController, duration: 0.25, options: .TransitionCrossDissolve, animations:{ () -> Void in
+        newController.closeButton.isHidden = true
+        transition(from: oldController, to: newController, duration: 0.25, options: .transitionCrossDissolve, animations:{ () -> Void in
             // nothing needed here
             }, completion: { (finished) -> Void in
                 oldController.removeFromParentViewController()
-                newController.didMoveToParentViewController(self)
+                newController.didMove(toParentViewController: self)
 
         })
     }
     
-    @IBAction func step3(sender: AnyObject) {
-        let newController = (storyboard?.instantiateViewControllerWithIdentifier("RoundingCardsViewController"))! as! RoundingCardsViewController
+    @IBAction func step3(_ sender: AnyObject) {
+        let newController = (storyboard?.instantiateViewController(withIdentifier: "RoundingCardsViewController"))! as! RoundingCardsViewController
         let oldController = childViewControllers.last! as UIViewController
         
-        oldController.willMoveToParentViewController(nil)
+        oldController.willMove(toParentViewController: nil)
         addChildViewController(newController)
         newController.view.frame = oldController.view.frame
         
-        transitionFromViewController(oldController, toViewController: newController, duration: 0.25, options: .TransitionCrossDissolve, animations:{ () -> Void in
+        transition(from: oldController, to: newController, duration: 0.25, options: .transitionCrossDissolve, animations:{ () -> Void in
             // nothing needed here
             }, completion: { (finished) -> Void in
                 oldController.removeFromParentViewController()
-                newController.didMoveToParentViewController(self)
+                newController.didMove(toParentViewController: self)
         })
         
     }
     
-    @IBAction func step4(sender: AnyObject) {
-        let emailAlert = UIAlertController(title: "", message: "Selecting YES indicates that you have gone through all the steps of the training", preferredStyle: .Alert)
-        emailAlert.addAction(UIAlertAction(title: "NO", style: .Cancel, handler: nil))
-        emailAlert.addAction(UIAlertAction(title: "YES", style: .Default, handler: { (UIAlertAction) -> Void in
+    @IBAction func step4(_ sender: AnyObject) {
+        let emailAlert = UIAlertController(title: "", message: "Selecting YES indicates that you have gone through all the steps of the training", preferredStyle: .alert)
+        emailAlert.addAction(UIAlertAction(title: "NO", style: .cancel, handler: nil))
+        emailAlert.addAction(UIAlertAction(title: "YES", style: .default, handler: { (UIAlertAction) -> Void in
             self.updateUserTraining()
             if let roundingCards = self.childViewControllers.last as? RoundingCardsViewController {
                 self.sendEmail(roundingCards.view)
@@ -77,51 +77,51 @@ class TrainingViewController: UIViewController,MFMailComposeViewControllerDelega
                 self.showDevice()
             }
         }))
-        presentViewController(emailAlert, animated: true, completion: nil)
+        present(emailAlert, animated: true, completion: nil)
     }
     
     func showDevice() {
-        let upcoming = self.storyboard?.instantiateViewControllerWithIdentifier("home") as! HomeScreenViewController
+        let upcoming = self.storyboard?.instantiateViewController(withIdentifier: "home") as! HomeScreenViewController
         let navigationController = UINavigationController(rootViewController: upcoming)
-        self.presentViewController(navigationController, animated: true, completion: nil)
+        self.present(navigationController, animated: true, completion: nil)
     }
     
-    func captureIamge(view: UIView) -> UIImage {
-        let screenRect = UIScreen.mainScreen().bounds
+    func captureIamge(_ view: UIView) -> UIImage {
+        let screenRect = UIScreen.main.bounds
         UIGraphicsBeginImageContext(screenRect.size)
         let ctx = UIGraphicsGetCurrentContext()
-        UIColor.blackColor().set()
-        CGContextFillRect(ctx!, screenRect)
-        view.layer.renderInContext(ctx!)
+        UIColor.black.set()
+        ctx!.fill(screenRect)
+        view.layer.render(in: ctx!)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return newImage!
     }
     
-    func sendEmail(view: UIView) {
+    func sendEmail(_ view: UIView) {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             let image = captureIamge(view)
             let data = UIImageJPEGRepresentation(image, 1)
             mail.addAttachmentData(data!, mimeType: "image/jpeg", fileName: "Rounding Cards.jpg")
-            presentViewController(mail, animated: true, completion: nil)
+            present(mail, animated: true, completion: nil)
         }
     }
     
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        dismissViewControllerAnimated(true, completion: nil)
-        let emailAlert = UIAlertController(title: "Email", message: "Email has been successfully sent!", preferredStyle: .Alert)
-        emailAlert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: { (_) in
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
+        let emailAlert = UIAlertController(title: "Email", message: "Email has been successfully sent!", preferredStyle: .alert)
+        emailAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
             self.showDevice()
         }))
-        self.presentViewController(emailAlert, animated: true, completion: nil)        
+        self.present(emailAlert, animated: true, completion: nil)        
     }
     
     
     func updateUserTraining() {
         let appDelegate =
-            UIApplication.sharedApplication().delegate as! AppDelegate
+            UIApplication.shared.delegate as! AppDelegate
         let managedObjectContext = appDelegate.managedObjectContext
         user.training = "Done"
         do {

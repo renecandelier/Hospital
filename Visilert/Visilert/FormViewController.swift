@@ -13,16 +13,16 @@ class FormViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if !UIAccessibilityIsReduceTransparencyEnabled() {
-            self.view.backgroundColor = UIColor.clearColor()
-            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.ExtraLight)
+            self.view.backgroundColor = UIColor.clear
+            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
             let blurEffectView = UIVisualEffectView(effect: blurEffect)
             blurEffectView.frame = self.view.bounds
-            blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             self.view.addSubview(blurEffectView) //if you have more UIViews, use an insertSubview API to place it where needed
-            self.view.sendSubviewToBack(blurEffectView)
+            self.view.sendSubview(toBack: blurEffectView)
         }
         else {
-            self.view.backgroundColor = UIColor.darkGrayColor()
+            self.view.backgroundColor = UIColor.darkGray
         }
     }
 }

@@ -21,11 +21,11 @@ class PatientChecklistTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return headers.count
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return checkList.count
         } else if section == 1 {
@@ -36,8 +36,8 @@ class PatientChecklistTableViewController: UITableViewController {
         return 1
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ChecklistTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ChecklistTableViewCell
         if indexPath.section == 0 {
             cell.taskLabel.text = checkList[indexPath.row]
         } else if indexPath.section == 1 {
@@ -48,18 +48,18 @@ class PatientChecklistTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return headers[section]
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 22))
-            let label = UILabel(frame: CGRectMake(10, 2, tableView.frame.size.width, 22))
-            label.font = UIFont.boldSystemFontOfSize(18)
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 22))
+            let label = UILabel(frame: CGRect(x: 10, y: 2, width: tableView.frame.size.width, height: 22))
+            label.font = UIFont.boldSystemFont(ofSize: 18)
             label.textColor = UIColor(red:0.67, green:0.78, blue:0.17, alpha:1.0)
             label.text = headers[section]
             view.addSubview(label)
-            view.backgroundColor = UIColor.whiteColor()
+            view.backgroundColor = UIColor.white
             return view
     }
 }

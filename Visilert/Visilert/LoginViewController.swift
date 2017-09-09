@@ -16,35 +16,35 @@ class LoginViewController: UIViewController {
     
     var account: Account!
     
-    @IBAction func cancelButton(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelButton(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func showDisclaimer(sender: AnyObject) {
-        let disclaimerAlert = UIAlertController(title: "Warning", message: "The Visilert app is designed for staff to practice setting/using the device. The app is not designed to save your education information. For core competency verification, you should complete all four (4) steps in order, and to completion. This will allow you to send the final check off document to your manager.", preferredStyle: .Alert)
-        disclaimerAlert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        presentViewController(disclaimerAlert, animated: true, completion: nil)
+    @IBAction func showDisclaimer(_ sender: AnyObject) {
+        let disclaimerAlert = UIAlertController(title: "Warning", message: "The Visilert app is designed for staff to practice setting/using the device. The app is not designed to save your education information. For core competency verification, you should complete all four (4) steps in order, and to completion. This will allow you to send the final check off document to your manager.", preferredStyle: .alert)
+        disclaimerAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(disclaimerAlert, animated: true, completion: nil)
     }
     
-    @IBAction func loginButton(sender: AnyObject) {
+    @IBAction func loginButton(_ sender: AnyObject) {
         if (usernameTextField.text?.isEmpty == true || passwordTextField.text?.isEmpty == true) {
-            let missingFieldsAlert = UIAlertController(title: "Missing Field", message: "Please fill in values for all the fields.", preferredStyle: .Alert)
-            let ok = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            let missingFieldsAlert = UIAlertController(title: "Missing Field", message: "Please fill in values for all the fields.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
             missingFieldsAlert.addAction(ok)
-            presentViewController(missingFieldsAlert, animated: true, completion: nil)
+            present(missingFieldsAlert, animated: true, completion: nil)
         } else {
             let appDelegate =
-                UIApplication.sharedApplication().delegate as! AppDelegate
+                UIApplication.shared.delegate as! AppDelegate
             let managedObjectContext = appDelegate.managedObjectContext
             let entityDescription =
-                NSEntityDescription.entityForName("Account",
-                                                  inManagedObjectContext: managedObjectContext)
-            let request = NSFetchRequest()
+                NSEntityDescription.entity(forEntityName: "Account",
+                                                  in: managedObjectContext)
+            let request = NSFetchRequest<NSFetchRequestResult>()
             request.entity = entityDescription
             let pred = NSPredicate(format: "(username = %@) AND (password = %@)", usernameTextField.text!, passwordTextField.text!)
             request.predicate = pred
             do {
-                let list = try managedObjectContext.executeFetchRequest(request)
+                let list = try managedObjectContext.fetch(request)
                 if list.count > 0 {
                     let user = list[0] as! Account
                     account = user
@@ -54,10 +54,10 @@ class LoginViewController: UIViewController {
                         openDevice()
                     }
                 } else {
-                    let missingFieldsAlert = UIAlertController(title: "Authentication Error", message: "No user found.", preferredStyle: .Alert)
-                    let ok = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                    let missingFieldsAlert = UIAlertController(title: "Authentication Error", message: "No user found.", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
                     missingFieldsAlert.addAction(ok)
-                    presentViewController(missingFieldsAlert, animated: true, completion: nil)
+                    present(missingFieldsAlert, animated: true, completion: nil)
                 }
             } catch let error as NSError {
                 print("Fetch failed: \(error.localizedDescription)")
@@ -66,18 +66,18 @@ class LoginViewController: UIViewController {
     }
     
     func openTraining() {
-        let viewController: TrainingViewController = self.storyboard?.instantiateViewControllerWithIdentifier("guide") as! TrainingViewController
+        let viewController: TrainingViewController = self.storyboard?.instantiateViewController(withIdentifier: "guide") as! TrainingViewController
         viewController.user = account
-        presentViewController(viewController, animated: true, completion: nil)
+        present(viewController, animated: true, completion: nil)
     }
     
     func openDevice() {
-        let viewController: DeviceViewController = self.storyboard?.instantiateViewControllerWithIdentifier("device") as! DeviceViewController
-        viewController.closeButton?.hidden = false
-        presentViewController(viewController, animated: true, completion: nil)
+        let viewController: DeviceViewController = self.storyboard?.instantiateViewController(withIdentifier: "device") as! DeviceViewController
+        viewController.closeButton?.isHidden = false
+        present(viewController, animated: true, completion: nil)
     }
     
-    override func performSegueWithIdentifier(identifier: String, sender: AnyObject?) {
+    override func performSegue(withIdentifier identifier: String, sender: Any?) {
         
     }
 }

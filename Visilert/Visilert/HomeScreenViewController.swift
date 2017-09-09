@@ -14,31 +14,31 @@ class HomeScreenViewController: UIViewController {
     var titleForNextView = ""
     var pdf = ""
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        navigationController?.navigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(true)
-        navigationController?.navigationBarHidden = false
+        navigationController?.isNavigationBarHidden = false
     }
     
-    @IBAction func presentHowItWorks(sender: UIButton) {
+    @IBAction func presentHowItWorks(_ sender: UIButton) {
         titleForNextView = "How It Works"
         pdf = "How It Works"
-        performSegueWithIdentifier("PDF", sender: self)
+        performSegue(withIdentifier: "PDF", sender: self)
     }
     
-    @IBAction func presentOperatingInstructions(sender: UIButton) {
+    @IBAction func presentOperatingInstructions(_ sender: UIButton) {
         titleForNextView = "Operating Instructions"
         pdf = "Operating Instructions"
-        performSegueWithIdentifier("PDF", sender: self)
+        performSegue(withIdentifier: "PDF", sender: self)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PDF" {
-            let upcoming = segue.destinationViewController as! PDFViewController
+            let upcoming = segue.destination as! PDFViewController
                 upcoming.title = titleForNextView
                 upcoming.pdfFile = pdf
         }
